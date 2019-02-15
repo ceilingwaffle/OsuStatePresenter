@@ -8,12 +8,12 @@ namespace RTSP
 {
     public class NodeSupervisor
     {
-        private readonly Dictionary<Type, Node> _masterNodes;
-
         public NodeSupervisor()
         {
-            _masterNodes = new Dictionary<Type, Node>();
+            MasterNodes = new Dictionary<Type, Node>();
         }
+
+        internal Dictionary<Type, Node> MasterNodes { get; private set; }
 
         public void AddMasterNodes(params Node[] nodes)
         {
@@ -22,7 +22,7 @@ namespace RTSP
                 if (node.HasParents())
                     throw new Exception($"Node {node.GetType().ToString()} has at least one parent and is therefore not a master Node.");
 
-                _masterNodes[node.GetType()] = node;
+                MasterNodes[node.GetType()] = node;
             }
 
         }

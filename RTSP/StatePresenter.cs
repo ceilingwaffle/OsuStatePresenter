@@ -9,15 +9,28 @@ namespace RTSP
     public class StatePresenter
     {
         public NodeSupervisor NodeSupervisor { get; private set; }
+        private TimeSpan _scannerInterval = TimeSpan.FromMilliseconds(5000);
 
         public StatePresenter()
         {
             NodeSupervisor = new NodeSupervisor();
         }
 
-        public void Start()
+        public async Task Start()
         {
-            // TODO
+            while (true)
+            {
+                var masterNodes = NodeSupervisor.MasterNodes.ToList().Select((n) => { return n.Value; });
+
+                foreach (var node in masterNodes)
+                {
+                    // TODO
+                    Console.WriteLine(node.GetType().ToString());
+                }
+
+                await Task.Delay(_scannerInterval);
+            }
+
         }
     }
 }
