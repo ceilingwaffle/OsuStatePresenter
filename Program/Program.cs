@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Program
@@ -45,11 +46,13 @@ namespace Program
             redLinesNode.AddChildren(bpmNode);
 
             // start scanning
-            sp.Start();
+            var scannerTask = sp.StartAsync();
 
             // keep the console open
             while (true)
+            {
                 Console.ReadKey();
+            }
         }
     }
 

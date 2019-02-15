@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RTSP
@@ -16,18 +17,56 @@ namespace RTSP
             NodeSupervisor = new NodeSupervisor();
         }
 
-        public async Task Start()
+        public async Task StartAsync()
         {
+            NodeSupervisor.BuildLeafNodes();
+
+            var cts = new CancellationTokenSource();
+
             while (true)
             {
-                var masterNodes = NodeSupervisor.MasterNodes.ToList().Select((n) => { return n.Value; });
+                if (cts.IsCancellationRequested)
+                    return;
 
-                foreach (var node in masterNodes)
+                //var masterNodes = NodeSupervisor.MasterNodes.ToList().Select((n) => { return n.Value; });
+
+                //foreach (var node in masterNodes)
+                //{
+                //    // TODO
+
+                //    if (node.GetUpdateTaskStatus() != TaskStatus.Running)
+                //    {
+                //        Console.WriteLine($"{node.GetType().ToString()}.Update() RESTART...");
+                //        node.DisposeUpdateTask();
+                //        await node.UpdateAsync();
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine($"{node.GetType().ToString()}.Update() is already running...");
+                //    }
+
+                //}
+
+                var leafNodes = NodeSupervisor.LeafNodes.ToList().Select((n) => { return n.Value; });
+
+                foreach (var node in leafNodes)
                 {
                     // TODO
-                    Console.WriteLine(node.GetType().ToString());
+
+                    if (node.GetUpdateTaskStatus() != TaskStatus.Running)
+                    {
+                        Console.WriteLine($"{node.GetType().ToString()}.Update() RESTART...");
+                        
+                        await node.UpdateAsync();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{node.GetType().ToString()}.Update() is already running...");
+                    }
+
                 }
 
+                Console.WriteLine("----------------------");
                 await Task.Delay(_scannerInterval);
             }
 
