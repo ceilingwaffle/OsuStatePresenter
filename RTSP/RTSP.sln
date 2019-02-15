@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTSP", "RTSP.csproj", "{8653A255-B83D-4621-B25F-703A43C6EEC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "..\Program\Program.csproj", "{036ADC3B-B440-4082-9AEC-1D9F60804FFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8653A255-B83D-4621-B25F-703A43C6EEC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8653A255-B83D-4621-B25F-703A43C6EEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8653A255-B83D-4621-B25F-703A43C6EEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8653A255-B83D-4621-B25F-703A43C6EEC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036ADC3B-B440-4082-9AEC-1D9F60804FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036ADC3B-B440-4082-9AEC-1D9F60804FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036ADC3B-B440-4082-9AEC-1D9F60804FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036ADC3B-B440-4082-9AEC-1D9F60804FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0CAB3DD7-02D6-4164-AFB2-26BBE5E70BEE}
+	EndGlobalSection
+EndGlobal
