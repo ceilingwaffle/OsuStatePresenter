@@ -52,6 +52,8 @@ namespace RTSP.Example
             while (true)
             {
                 Console.ReadKey();
+
+                var a = sp;
             }
         }
     }
