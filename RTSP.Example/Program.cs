@@ -31,7 +31,7 @@ namespace RTSP.Example
             var bpmNode = new BpmNode();
 
             // add master nodes
-            sp.NodeSupervisor.AddMasterNodes(mapIdNode, mapTimeNode, statusNode);
+            sp.NodeSupervisor.AddRootNodes(mapIdNode, mapTimeNode, statusNode);
             
             // attach to level 0 nodes
             mapIdNode.AddChildren(beatmapNode);
