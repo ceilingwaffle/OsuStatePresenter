@@ -14,6 +14,7 @@ namespace RTSP.Example
             var mapTimeNode = new MapTimeNode();
             var statusNode = new StatusNode();
 
+
             // level 1 nodes
             var beatmapNode = new BeatmapNode();
             var pausedNode = new PausedNode();
@@ -27,7 +28,7 @@ namespace RTSP.Example
 
             // add master nodes
             sp.NodeSupervisor.AddRootNodes(mapIdNode, mapTimeNode, statusNode);
-            
+
             // attach to level 0 nodes
             mapIdNode.AddChildren(beatmapNode);
             mapTimeNode.AddChildren(bpmNode, pausedNode);
