@@ -52,33 +52,65 @@ namespace RTSP.Example
 
     class MapIdNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 
     class MapTimeNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 
     class StatusNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 
     class BpmNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 
     class ModsNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 
     class RedLinesNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 
     class BeatmapNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 
     class PausedNode : Node
     {
+        public override object DetermineValue()
+        {
+            return new object();
+        }
     }
 }
