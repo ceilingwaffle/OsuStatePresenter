@@ -1,4 +1,5 @@
-﻿using RTSP.Core;
+﻿using System.Threading.Tasks;
+using RTSP.Core;
 using System;
 
 namespace RTSP.Example
@@ -52,65 +53,65 @@ namespace RTSP.Example
 
     class MapIdNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 
     class MapTimeNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 
     class StatusNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 
     class BpmNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 
     class ModsNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 
     class RedLinesNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 
     class BeatmapNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 
     class PausedNode : Node
     {
-        public override object DetermineValue()
+        public override Task<object> DetermineValueAsync()
         {
-            return new object();
+            return Task.Run(() => { return new object(); });
         }
     }
 }
