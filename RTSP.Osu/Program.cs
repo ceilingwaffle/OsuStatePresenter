@@ -53,9 +53,21 @@ namespace RTSP.Example
 
     class MapIdNode : Node
     {
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            //// fetch data
+            //Debug.WriteLine($"{T()} Fetching data...", LogCategory.Event, this);
+            //await Task.Delay(TimeSpan.FromMilliseconds(800));
+            //var fetchedDataTs = Helpers.UnixTimestamp();
+            //Debug.WriteLine($"{T()} Completed: FetchData().", LogCategory.Event, this);
+
+            //await Task.Delay(TimeSpan.FromMilliseconds(200));
+            //var calculatedValue = Helpers.UnixTimestamp() - fetchedDataTs;
+            ////_SetValue(calculatedValue);
+            //_SetValue(Helpers.Rand(1, 2));
+            //Debug.WriteLine($"{T()} Completed: CalculateValue(fetchedData).", LogCategory.Event, this);
+
+            return await Task.Run(() => { return new object(); });
         }
     }
 
