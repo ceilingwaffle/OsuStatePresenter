@@ -38,6 +38,8 @@ namespace RTSP.Example
             // attach to level 2 nodes
             redLinesNode.AddChildren(bpmNode);
 
+            sp.AddEventHandler_NewStateCreated(StateCreatedHandler);
+
             // start scanning
             var scannerTask = sp.StartAsync();
 
@@ -48,6 +50,12 @@ namespace RTSP.Example
 
                 //var a = sp;
             }
+        }
+
+        protected static void StateCreatedHandler(State state)
+        {
+            // TODO
+            System.Diagnostics.Debug.WriteLine($"------------------New state created.", state);
         }
     }
 
