@@ -61,6 +61,8 @@ namespace RTSP.Example
 
     class MapIdNode : Node
     {
+        public override string StatePropertyName => "MapID";
+
         public override async Task<object> DetermineValueAsync()
         {
             //// fetch data
@@ -81,6 +83,9 @@ namespace RTSP.Example
 
     class MapTimeNode : Node
     {
+        // should not be listed in EnabledNodes
+        public override string StatePropertyName => null;
+
         public override Task<object> DetermineValueAsync()
         {
             return Task.Run(() => { return new object(); });
@@ -89,6 +94,9 @@ namespace RTSP.Example
 
     class StatusNode : Node
     {
+        // should be listed in EnabledNodes
+        public override string StatePropertyName => "GameStatus";
+
         public override Task<object> DetermineValueAsync()
         {
             return Task.Run(() => { return new object(); });
@@ -97,6 +105,8 @@ namespace RTSP.Example
 
     class BpmNode : Node
     {
+        public override string StatePropertyName => "BPM";
+
         public override Task<object> DetermineValueAsync()
         {
             return Task.Run(() => { return new object(); });
@@ -105,6 +115,8 @@ namespace RTSP.Example
 
     class ModsNode : Node
     {
+        public override string StatePropertyName => "Mods";
+
         public override Task<object> DetermineValueAsync()
         {
             return Task.Run(() => { return new object(); });
@@ -113,6 +125,9 @@ namespace RTSP.Example
 
     class RedLinesNode : Node
     {
+        // should not be listed in EnabledNodes
+        //public override string StatePropertyName => "RedLineTimingPoints";
+
         public override Task<object> DetermineValueAsync()
         {
             return Task.Run(() => { return new object(); });
@@ -121,6 +136,9 @@ namespace RTSP.Example
 
     class BeatmapNode : Node
     {
+        // should not be listed in EnabledNodes
+        //public override string StatePropertyName => "Beatmap";
+
         public override Task<object> DetermineValueAsync()
         {
             return Task.Run(() => { return new object(); });
@@ -129,6 +147,8 @@ namespace RTSP.Example
 
     class PausedNode : Node
     {
+        public override string StatePropertyName => "IsPaused";
+
         public override Task<object> DetermineValueAsync()
         {
             return Task.Run(() => { return new object(); });
