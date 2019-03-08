@@ -55,7 +55,7 @@ namespace RTSP.Example
         protected static void StateCreatedHandler(State state)
         {
             // TODO
-            System.Diagnostics.Debug.WriteLine($"------------------New state created.", state);
+            System.Diagnostics.Debug.WriteLine(state);
         }
     }
 
@@ -77,7 +77,7 @@ namespace RTSP.Example
             //_SetValue(Helpers.Rand(1, 2));
             //Debug.WriteLine($"{T()} Completed: CalculateValue(fetchedData).", LogCategory.Event, this);
 
-            return await Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return 1234; });
         }
     }
 
@@ -86,9 +86,9 @@ namespace RTSP.Example
         // should not be listed in EnabledNodes
         public override string StatePropertyName => null;
 
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return new object(); });
         }
     }
 
@@ -97,9 +97,9 @@ namespace RTSP.Example
         // should be listed in EnabledNodes
         public override string StatePropertyName => "GameStatus";
 
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return (object)"Playing"; });
         }
     }
 
@@ -107,9 +107,9 @@ namespace RTSP.Example
     {
         public override string StatePropertyName => "BPM";
 
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return 200; });
         }
     }
 
@@ -117,9 +117,9 @@ namespace RTSP.Example
     {
         public override string StatePropertyName => "Mods";
 
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return new object(); });
         }
     }
 
@@ -128,9 +128,9 @@ namespace RTSP.Example
         // should not be listed in EnabledNodes
         //public override string StatePropertyName => "RedLineTimingPoints";
 
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return new object(); });
         }
     }
 
@@ -139,9 +139,9 @@ namespace RTSP.Example
         // should not be listed in EnabledNodes
         //public override string StatePropertyName => "Beatmap";
 
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return new object(); });
         }
     }
 
@@ -149,9 +149,9 @@ namespace RTSP.Example
     {
         public override string StatePropertyName => "IsPaused";
 
-        public override Task<object> DetermineValueAsync()
+        public override async Task<object> DetermineValueAsync()
         {
-            return Task.Run(() => { return new object(); });
+            return await Task.Run(() => { return new object(); });
         }
     }
 }
