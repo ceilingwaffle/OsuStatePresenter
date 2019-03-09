@@ -59,10 +59,10 @@ namespace RTSP.Example
         }
     }
 
+    // should be listed in EnabledNodes
+    [StateProperty(enabled: true, name: "MapID")]
     class MapIdNode : Node
     {
-        public override string StatePropertyName => "MapID";
-
         public override async Task<object> DetermineValueAsync()
         {
             //// fetch data
@@ -77,81 +77,77 @@ namespace RTSP.Example
             //_SetValue(Helpers.Rand(1, 2));
             //Debug.WriteLine($"{T()} Completed: CalculateValue(fetchedData).", LogCategory.Event, this);
 
-            return await Task.Run(() => { return 1234; });
+            return await Task.FromResult(1234);
         }
     }
 
+    // should not be listed in EnabledNodes
+    [StateProperty(enabled: false, name: "MapTime")]
     class MapTimeNode : Node
     {
-        // should not be listed in EnabledNodes
-        public override string StatePropertyName => null;
-
         public override async Task<object> DetermineValueAsync()
         {
-            return await Task.Run(() => { return new object(); });
+            return await Task.FromResult(new object());
         }
     }
 
+    // should be listed in EnabledNodes
+    [StateProperty(enabled: true, name: "GameStatus")]
     class StatusNode : Node
     {
-        // should be listed in EnabledNodes
-        public override string StatePropertyName => "GameStatus";
-
         public override async Task<object> DetermineValueAsync()
         {
-            return await Task.Run(() => { return (object)"Playing"; });
+            return await Task.FromResult("Playing");
         }
     }
 
+    // should be listed in EnabledNodes
+    [StateProperty(enabled: true, name: "CurrentBPM")]
     class BpmNode : Node
     {
-        public override string StatePropertyName => "BPM";
-
         public override async Task<object> DetermineValueAsync()
         {
-            return await Task.Run(() => { return 200; });
+            return await Task.FromResult(200);
         }
     }
 
+    // should be listed in EnabledNodes
+    [StateProperty(enabled: true, name: "Mods")]
     class ModsNode : Node
     {
-        public override string StatePropertyName => "Mods";
-
         public override async Task<object> DetermineValueAsync()
         {
-            return await Task.Run(() => { return new object(); });
+            return await Task.FromResult(new object());
         }
     }
 
+    // should not be listed in EnabledNodes
+    [StateProperty(enabled: false, name: "RedLinesTimingPoints")]
     class RedLinesNode : Node
     {
-        // should not be listed in EnabledNodes
-        //public override string StatePropertyName => "RedLineTimingPoints";
-
         public override async Task<object> DetermineValueAsync()
         {
-            return await Task.Run(() => { return new object(); });
+            return await Task.FromResult(new object());
         }
     }
 
+    // should not be listed in EnabledNodes
+    [StateProperty(enabled: false, name: "Beatmap")]
     class BeatmapNode : Node
     {
-        // should not be listed in EnabledNodes
-        //public override string StatePropertyName => "Beatmap";
-
         public override async Task<object> DetermineValueAsync()
         {
-            return await Task.Run(() => { return new object(); });
+            return await Task.FromResult(new object());
         }
     }
 
+    // should be listed in EnabledNodes
+    [StateProperty(enabled: true, name: "IsPaused")]
     class PausedNode : Node
     {
-        public override string StatePropertyName => "IsPaused";
-
         public override async Task<object> DetermineValueAsync()
         {
-            return await Task.Run(() => { return new object(); });
+            return await Task.FromResult(new object());
         }
     }
 }
