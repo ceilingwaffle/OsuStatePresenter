@@ -60,7 +60,7 @@ namespace RTSP.Example
     }
 
     // should be listed in EnabledNodes
-    [StateProperty(enabled: true, name: "MapID")]
+    [StateProperty(enabled: false, name: "MapID")]
     class MapIdNode : Node
     {
         public override async Task<object> DetermineValueAsync()
@@ -94,7 +94,7 @@ namespace RTSP.Example
     }
 
     // should be listed in EnabledNodes
-    [StateProperty(enabled: true, name: "GameStatus")]
+    [StateProperty(enabled: false, name: "GameStatus")]
     class StatusNode : Node
     {
         public override async Task<object> DetermineValueAsync()
@@ -106,7 +106,7 @@ namespace RTSP.Example
     }
 
     // should be listed in EnabledNodes
-    [StateProperty(enabled: true, name: "CurrentBPM")]
+    [StateProperty(enabled: false, name: "CurrentBPM")]
     class BpmNode : Node
     {
         public override async Task<object> DetermineValueAsync()
@@ -126,7 +126,7 @@ namespace RTSP.Example
     }
 
     // should be listed in EnabledNodes
-    [StateProperty(enabled: true, name: "Mods")]
+    [StateProperty(enabled: false, name: "Mods")]
     class ModsNode : Node
     {
         public override async Task<object> DetermineValueAsync()
