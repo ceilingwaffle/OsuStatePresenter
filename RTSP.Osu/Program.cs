@@ -107,6 +107,14 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            Parents.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
+            Parents.TryGetValue(typeof(ModsNode), out var modsNode);
+            Parents.TryGetValue(typeof(RedLinesNode), out var redLinesNode);
+
+            var mapTime = mapTimeNode.GetValue();
+            var mods = modsNode.GetValue();
+            var redLineTimingPoints = redLinesNode.GetValue();
+
             return await Task.FromResult(200);
         }
     }
