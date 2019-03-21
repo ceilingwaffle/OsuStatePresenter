@@ -2,7 +2,7 @@
 using RTSP.Core;
 using System;
 
-namespace RTSP.Example
+namespace RTSP.Osu
 {
     class Program
     {
@@ -83,7 +83,9 @@ namespace RTSP.Example
             //_SetValue(Helpers.Rand(1, 2));
             //Debug.WriteLine($"{T()} Completed: CalculateValue(fetchedData).", LogCategory.Event, this);
 
-            return await Task.FromResult(1234);
+            var value = Helpers.Rand(1, 1000);
+
+            return await Task.FromResult(value);
         }
     }
 
@@ -139,6 +141,8 @@ namespace RTSP.Example
         {
             await Task.Delay(TimeSpan.FromMilliseconds(800));
 
+            var value = Helpers.RandomStringFrom("HDHR", "nomod");
+
             return await Task.FromResult("HDHR");
         }
     }
@@ -161,9 +165,11 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(1000));
+            await Task.Delay(TimeSpan.FromMilliseconds(6000));
 
-            return await Task.FromResult("TODO: Beatmap object");
+            var value = Helpers.RandomStringFrom("Beatmap A", "Beatmap B");
+
+            return await Task.FromResult(value);
         }
     }
 
