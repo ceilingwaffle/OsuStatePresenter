@@ -6,6 +6,12 @@ namespace RTSP.Example
 {
     class Program
     {
+        /*
+         * TODO: Replace Debug.WriteLine(...) with NLog
+         */
+
+        private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+
         static void Main(string[] args)
         {
             var sp = new StatePresenter();
@@ -55,12 +61,12 @@ namespace RTSP.Example
         protected static void StateCreatedHandler(State state)
         {
             // TODO
-            System.Diagnostics.Debug.WriteLine(state);
+            _logger.Debug("State created:\n{0}", state);
         }
     }
 
     // should be listed in EnabledNodes
-    [StateProperty(enabled: false, name: "MapID")]
+    [StateProperty(enabled: true, name: "MapID")]
     class MapIdNode : Node
     {
         public override async Task<object> DetermineValueAsync()
@@ -82,36 +88,36 @@ namespace RTSP.Example
     }
 
     // should not be listed in EnabledNodes
-    [StateProperty(enabled: false, name: "MapTime")]
+    [StateProperty(enabled: true, name: "MapTime")]
     class MapTimeNode : Node
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(800));
+            await Task.Delay(TimeSpan.FromMilliseconds(500));
 
-            return await Task.FromResult(new object());
+            return await Task.FromResult(180);
         }
     }
 
     // should be listed in EnabledNodes
-    [StateProperty(enabled: false, name: "GameStatus")]
+    [StateProperty(enabled: true, name: "GameStatus")]
     class StatusNode : Node
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(800));
+            await Task.Delay(TimeSpan.FromMilliseconds(600));
 
             return await Task.FromResult("Playing");
         }
     }
 
     // should be listed in EnabledNodes
-    [StateProperty(enabled: false, name: "CurrentBPM")]
+    [StateProperty(enabled: true, name: "CurrentBPM")]
     class BpmNode : Node
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(800));
+            await Task.Delay(TimeSpan.FromMilliseconds(700));
 
             Parents.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
             Parents.TryGetValue(typeof(ModsNode), out var modsNode);
@@ -133,7 +139,7 @@ namespace RTSP.Example
         {
             await Task.Delay(TimeSpan.FromMilliseconds(800));
 
-            return await Task.FromResult(new object());
+            return await Task.FromResult("HDHR");
         }
     }
 
@@ -143,9 +149,9 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(800));
+            await Task.Delay(TimeSpan.FromMilliseconds(900));
 
-            return await Task.FromResult(new object());
+            return await Task.FromResult("TODO: RedLinesTimingPoints object");
         }
     }
 
@@ -155,9 +161,9 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(800));
+            await Task.Delay(TimeSpan.FromMilliseconds(1000));
 
-            return await Task.FromResult(new object());
+            return await Task.FromResult("TODO: Beatmap object");
         }
     }
 
@@ -167,9 +173,9 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(800));
+            await Task.Delay(TimeSpan.FromMilliseconds(1100));
 
-            return await Task.FromResult(new object());
+            return await Task.FromResult(false);
         }
     }
 }
