@@ -71,7 +71,7 @@ namespace RTSP.Example
             //var fetchedDataTs = Helpers.UnixTimestamp();
             //Debug.WriteLine($"{T()} Completed: FetchData().", LogCategory.Event, this);
 
-            //await Task.Delay(TimeSpan.FromMilliseconds(200));
+            //await Task.Delay(TimeSpan.FromMilliseconds(800));
             //var calculatedValue = Helpers.UnixTimestamp() - fetchedDataTs;
             ////_SetValue(calculatedValue);
             //_SetValue(Helpers.Rand(1, 2));
@@ -87,6 +87,8 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            await Task.Delay(TimeSpan.FromMilliseconds(800));
+
             return await Task.FromResult(new object());
         }
     }
@@ -97,6 +99,8 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            await Task.Delay(TimeSpan.FromMilliseconds(800));
+
             return await Task.FromResult("Playing");
         }
     }
@@ -107,6 +111,8 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            await Task.Delay(TimeSpan.FromMilliseconds(800));
+
             Parents.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
             Parents.TryGetValue(typeof(ModsNode), out var modsNode);
             Parents.TryGetValue(typeof(RedLinesNode), out var redLinesNode);
@@ -125,6 +131,8 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            await Task.Delay(TimeSpan.FromMilliseconds(800));
+
             return await Task.FromResult(new object());
         }
     }
@@ -135,6 +143,8 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            await Task.Delay(TimeSpan.FromMilliseconds(800));
+
             return await Task.FromResult(new object());
         }
     }
@@ -145,6 +155,8 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            await Task.Delay(TimeSpan.FromMilliseconds(800));
+
             return await Task.FromResult(new object());
         }
     }
@@ -155,6 +167,8 @@ namespace RTSP.Example
     {
         public override async Task<object> DetermineValueAsync()
         {
+            await Task.Delay(TimeSpan.FromMilliseconds(800));
+
             return await Task.FromResult(new object());
         }
     }
