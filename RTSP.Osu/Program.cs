@@ -95,7 +95,7 @@ namespace RTSP.Osu
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(500));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             return await Task.FromResult(180);
         }
@@ -107,7 +107,7 @@ namespace RTSP.Osu
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(600));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             return await Task.FromResult("Playing");
         }
@@ -119,7 +119,7 @@ namespace RTSP.Osu
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(700));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             Parents.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
             Parents.TryGetValue(typeof(ModsNode), out var modsNode);
@@ -139,7 +139,7 @@ namespace RTSP.Osu
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(800));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             var value = Helpers.RandomStringFrom("HDHR", "nomod");
 
@@ -153,7 +153,7 @@ namespace RTSP.Osu
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(900));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             return await Task.FromResult("TODO: RedLinesTimingPoints object");
         }
@@ -165,7 +165,7 @@ namespace RTSP.Osu
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(6000));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             var value = Helpers.RandomStringFrom("Beatmap A", "Beatmap B");
 
@@ -179,7 +179,7 @@ namespace RTSP.Osu
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(1100));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             return await Task.FromResult(false);
         }
