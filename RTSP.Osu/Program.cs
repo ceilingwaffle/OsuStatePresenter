@@ -33,16 +33,16 @@ namespace RTSP.Osu
             var bpmNode = new BpmNode();
 
             // attach to level 0 nodes
-            mapIdNode.AddChildren(beatmapNode);
-            mapTimeNode.AddChildren(bpmNode, pausedNode);
-            statusNode.AddChildren(modsNode, pausedNode);
+            mapIdNode.Precedes(beatmapNode);
+            mapTimeNode.Precedes(bpmNode, pausedNode);
+            statusNode.Precedes(modsNode, pausedNode);
 
             // attach to level 1 nodes
-            beatmapNode.AddChildren(redLinesNode);
-            modsNode.AddChildren(bpmNode);
+            beatmapNode.Precedes(redLinesNode);
+            modsNode.Precedes(bpmNode);
 
             // attach to level 2 nodes
-            redLinesNode.AddChildren(bpmNode);
+            redLinesNode.Precedes(bpmNode);
 
             sp.AddEventHandler_NewStateCreated(StateCreatedHandler);
 
@@ -121,9 +121,9 @@ namespace RTSP.Osu
         {
             await Task.Delay(TimeSpan.FromMilliseconds(1000));
 
-            Parents.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
-            Parents.TryGetValue(typeof(ModsNode), out var modsNode);
-            Parents.TryGetValue(typeof(RedLinesNode), out var redLinesNode);
+            Preceders.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
+            Preceders.TryGetValue(typeof(ModsNode), out var modsNode);
+            Preceders.TryGetValue(typeof(RedLinesNode), out var redLinesNode);
 
             var mapTime = mapTimeNode.GetValue();
             var mods = modsNode.GetValue();
