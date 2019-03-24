@@ -5,13 +5,28 @@ using System;
 namespace RTSP.Osu.Nodes
 {
     [StateProperty(enabled: true, name: "GameStatus")]
-    class StatusNode : Node
+    class StatusNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(1000));
+            string status = _GetMemoryStatus();
 
-            return await Task.FromResult("Playing");
+            // TODO: Create custom object for OsuStatus
+
+            return await Task.FromResult(status);
+        }
+
+        /// <summary>
+        /// Osu Memory Reader Status types: https://i.imgur.com/Q49H5Lk.png
+        /// </summary>
+        /// <returns></returns>
+        private string _GetMemoryStatus()
+        {
+            _memoryReader.GetCurrentStatus(out int statusNumber);
+
+            var status = (OsuMemoryDataProvider.OsuMemoryStatus)statusNumber;
+
+            return status.ToString();
         }
     }
 }

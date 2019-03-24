@@ -57,7 +57,7 @@ namespace RTSP.Osu
         protected static void StateCreatedHandler(State state)
         {
             // TODO
-            _logger.Debug("State created:\n{0}", state);
+            _logger.Info("State created:\n{0}", state);
         }
     }
 }

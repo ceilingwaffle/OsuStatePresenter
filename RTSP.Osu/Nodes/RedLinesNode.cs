@@ -5,11 +5,11 @@ using System;
 namespace RTSP.Osu.Nodes
 {
     [StateProperty(enabled: false, name: "RedLinesTimingPoints")]
-    class RedLinesNode : Node
+    class RedLinesNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(1000));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             return await Task.FromResult("TODO: RedLinesTimingPoints object");
         }

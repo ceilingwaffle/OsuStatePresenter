@@ -4,16 +4,14 @@ using System;
 
 namespace RTSP.Osu.Nodes
 {
-    [StateProperty(enabled: false, name: "Mods")]
-    class ModsNode : Node
+    [StateProperty(enabled: true, name: "Mods")]
+    class ModsNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(1000));
+            int mods = _memoryReader.GetMods();
 
-            var value = Helpers.RandomStringFrom("HDHR", "nomod");
-
-            return await Task.FromResult("HDHR");
+            return await Task.FromResult(mods);
         }
     }
 }

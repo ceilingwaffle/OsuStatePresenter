@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 namespace RTSP.Osu.Nodes
 {
     [StateProperty(enabled: true, name: "MapID")]
-    class MapIdNode : Node
+    class MapIdNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {
-            var value = Helpers.Rand(1, 1000);
+            int mapId = _memoryReader.GetMapId();
 
-            return await Task.FromResult(value);
+            return await Task.FromResult(mapId);
         }
     }
 }

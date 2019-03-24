@@ -5,11 +5,11 @@ using System;
 namespace RTSP.Osu.Nodes
 {
     [StateProperty(enabled: false, name: "Beatmap")]
-    class BeatmapNode : Node
+    class BeatmapNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(1000));
+            await Task.Delay(TimeSpan.FromMilliseconds(100));
 
             var value = Helpers.RandomStringFrom("Beatmap A", "Beatmap B");
 

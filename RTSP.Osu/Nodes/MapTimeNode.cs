@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 namespace RTSP.Osu.Nodes
 {
     [StateProperty(enabled: true, name: "MapTime")]
-    class MapTimeNode : Node
+    class MapTimeNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(1000));
+            int mapTime = _memoryReader.ReadPlayTime();
 
-            return await Task.FromResult(180);
+            return await Task.FromResult(mapTime);
         }
     }
 }
