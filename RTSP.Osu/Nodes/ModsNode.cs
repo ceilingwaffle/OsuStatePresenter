@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using RTSP.Core;
-using System;
 
 namespace RTSP.Osu.Nodes
 {
@@ -9,7 +8,9 @@ namespace RTSP.Osu.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
-            int mods = _memoryReader.GetMods();
+            int modsBitwise = _memoryReader.GetMods();
+
+            var mods = ((Mods)modsBitwise).ToString();
 
             return await Task.FromResult(mods);
         }

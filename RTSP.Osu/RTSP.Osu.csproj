@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mods.cs" />
     <Compile Include="Nodes\BeatmapNode.cs" />
     <Compile Include="Nodes\BpmNode.cs" />
     <Compile Include="Helpers.cs" />
