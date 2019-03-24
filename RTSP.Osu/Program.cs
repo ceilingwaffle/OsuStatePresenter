@@ -7,7 +7,8 @@ namespace RTSP.Osu
     class Program
     {
         /*
-         * TODO: Replace Debug.WriteLine(...) with NLog
+         * TODO: Replace UpdateAsync() -> UpdateAsync().ConfigureAwait(False)
+         * TODO: Replace "== null" -> "is null"
          */
 
         private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
