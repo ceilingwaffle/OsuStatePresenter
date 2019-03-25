@@ -13,32 +13,32 @@ namespace RTSP.Osu
             var sp = new StatePresenter();
 
             // level 0 nodes (master nodes)
-            //var mapIdNode = new MapIdNode();
             var mapTimeNode = new MapTimeNode();
-            //var statusNode = new StatusNode();
+            var mapIdNode = new MapIdNode();
+            var statusNode = new StatusNode();
 
             // level 1 nodes
-            //var beatmapNode = new BeatmapNode();
-            //var pausedNode = new PausedNode();
-            //var modsNode = new ModsNode();
+            var beatmapNode = new BeatmapNode();
+            var pausedNode = new PausedNode();
+            var modsNode = new ModsNode();
 
             // level 2 nodes
-            //var redLinesNode = new RedLinesNode();
+            var redLinesNode = new RedLinesNode();
 
             // level 3 nodes
-            //var bpmNode = new BpmNode();
+            var bpmNode = new BpmNode();
 
-            //// attach to level 0 nodes
-            //mapIdNode.Precedes(beatmapNode);
-            //mapTimeNode.Precedes(bpmNode, pausedNode);
-            //statusNode.Precedes(modsNode, pausedNode);
+            // attach to level 0 nodes
+            mapIdNode.Precedes(beatmapNode);
+            mapTimeNode.Precedes(bpmNode, pausedNode);
+            statusNode.Precedes(modsNode, pausedNode);
 
-            //// attach to level 1 nodes
-            //beatmapNode.Precedes(redLinesNode);
-            //modsNode.Precedes(bpmNode);
+            // attach to level 1 nodes
+            beatmapNode.Precedes(redLinesNode);
+            modsNode.Precedes(bpmNode);
 
-            //// attach to level 2 nodes
-            //redLinesNode.Precedes(bpmNode);
+            // attach to level 2 nodes
+            redLinesNode.Precedes(bpmNode);
 
             sp.AddEventHandler_NewStateCreated(StateCreatedHandler);
 

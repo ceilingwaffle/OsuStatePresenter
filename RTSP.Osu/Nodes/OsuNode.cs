@@ -11,6 +11,8 @@ namespace RTSP.Osu.Nodes
 
         public OsuNode()
         {
+            // TODO: One Node can hang another Node because they share the same OsuMemoryDataProvider instance - and the Node must wait for the reader to become "available" before it can read.
+
             OsuMemoryDataProvider.DataProvider.Initalize();
             _memoryReader = OsuMemoryDataProvider.DataProvider.Instance;
         }

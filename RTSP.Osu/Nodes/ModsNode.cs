@@ -14,6 +14,8 @@ namespace RTSP.Osu.Nodes
             int modsBitwise = _memoryReader.GetMods();
             var mods = ((Mods)modsBitwise).ToString();
 
+            await Task.Delay(3000);
+
             return await Task.FromResult(mods);
         }
     }
