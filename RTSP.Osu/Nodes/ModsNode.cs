@@ -28,9 +28,10 @@ namespace RTSP.Osu.Nodes
             {
                 return await Task.FromResult(ReadMods());
             }
-            else // just keep whatever the current value is (last good value)
+            else
             {
-                return this.GetValue();
+                // just keep whatever the current value is (last good value)
+                return await Task.FromResult(GetValue());
             }
 
             // TODO: Win32Exception not being caught from OsuMemory DLL when using osu Cutting Edge version

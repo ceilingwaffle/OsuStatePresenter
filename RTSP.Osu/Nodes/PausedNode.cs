@@ -10,7 +10,7 @@ namespace RTSP.Osu.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
-            // TODO: Fix minimum "2 state" delay time for paused status to update
+            // TODO: Use a 1 second timer to delay the checking of the current/previous MapTime, to fix the "difference between 2 states MapTime" causing "flicker" between IsPaused=true/false states
 
             Preceders.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
             //Preceders.TryGetValue(typeof(StatusNode), out var statusNode);
