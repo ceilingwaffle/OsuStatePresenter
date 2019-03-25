@@ -8,9 +8,11 @@ namespace RTSP.Osu.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
-            int modsBitwise = _memoryReader.GetMods();
+            //int modsBitwise = _memoryReader.GetMods();
 
-            var mods = ((Mods)modsBitwise).ToString();
+            //var mods = ((Mods)modsBitwise).ToString();
+
+            var mods = "HDHR";
 
             return await Task.FromResult(mods);
         }
