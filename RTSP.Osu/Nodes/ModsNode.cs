@@ -11,21 +11,10 @@ namespace RTSP.Osu.Nodes
         public override async Task<object> DetermineValueAsync()
         {
             // TODO: Win32Exception not being caught from OsuMemory DLL when using osu Cutting Edge version
+            int modsBitwise = _memoryReader.GetMods();
+            var mods = ((Mods)modsBitwise).ToString();
 
-            try
-            {
-                int modsBitwise = _memoryReader.GetMods();
-
-                var mods = ((Mods)modsBitwise).ToString();
-
-                return await Task.FromResult(mods);
-
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
+            return await Task.FromResult(mods);
         }
     }
 }

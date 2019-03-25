@@ -9,9 +9,9 @@ namespace RTSP.Osu.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
-            string status = _GetMemoryStatus();
-
             // TODO: Create custom object for OsuStatus
+
+            string status = _GetMemoryStatus();
 
             return await Task.FromResult(status);
         }
