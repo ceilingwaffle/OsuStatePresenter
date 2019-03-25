@@ -19,6 +19,8 @@ namespace RTSP.Osu.Nodes
             var previousMapTime = (int?)mapTimeNode?.GetPreviousValue() ?? 0;
             //var status = (string)statusNode?.GetValue();
 
+            //_logger.Info($"{previousMapTime} -> {currentMapTime}");
+
             //if (status.Contains("Playing") && currentMapTime.Equals(previousMapTime))
             if (currentMapTime.Equals(previousMapTime))
             {
