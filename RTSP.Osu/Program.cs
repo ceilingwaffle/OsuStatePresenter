@@ -31,7 +31,7 @@ namespace RTSP.Osu
             // attach to level 0 nodes
             mapIdNode.Precedes(beatmapNode);
             mapTimeNode.Precedes(bpmNode, pausedNode);
-            statusNode.Precedes(modsNode, pausedNode);
+            statusNode.Precedes(modsNode);
 
             // attach to level 1 nodes
             beatmapNode.Precedes(redLinesNode);
