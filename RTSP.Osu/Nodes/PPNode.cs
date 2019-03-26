@@ -9,6 +9,9 @@ namespace RTSP.Osu.Nodes
             //var pc = new OsuMemoryDataProvider.PlayContainer();
 
             //_memoryReader.GetPlayData(pc);
+
+            // TODO: See PpIfRestFcd() in https://github.com/Piotrekol/StreamCompanion/blob/master/plugins/OsuMemoryEventSource/RawMemoryDataProcessor.cs
+
             return null;
         }
     }
