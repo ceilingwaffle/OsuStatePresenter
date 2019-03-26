@@ -24,6 +24,7 @@ namespace RTSP.Osu
 
             // level 2 nodes
             var redLinesNode = new RedLinesNode();
+            var mapBreakNode = new MapBreakNode();
 
             // level 3 nodes
             var bpmNode = new BpmNode();
@@ -39,6 +40,7 @@ namespace RTSP.Osu
 
             // attach to level 2 nodes
             redLinesNode.Precedes(bpmNode);
+            mapBreakNode.Follows(beatmapNode, mapTimeNode);
 
             sp.AddEventHandler_NewStateCreated(StateCreatedHandler);
 

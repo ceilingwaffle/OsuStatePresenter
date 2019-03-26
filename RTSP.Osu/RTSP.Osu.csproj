@@ -58,6 +58,7 @@
     <Compile Include="Nodes\BeatmapNode.cs" />
     <Compile Include="Nodes\BpmNode.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="Nodes\MapBreakNode.cs" />
     <Compile Include="Nodes\ModsNode.cs" />
     <Compile Include="Nodes\MapIdNode.cs" />
     <Compile Include="Nodes\MapTimeNode.cs" />
