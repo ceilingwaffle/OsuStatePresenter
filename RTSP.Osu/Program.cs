@@ -23,7 +23,6 @@ namespace RTSP.Osu
             var modsNode = new ModsNode();
 
             // level 2 nodes
-            var redLinesNode = new RedLinesNode();
             var mapBreakNode = new MapBreakNode();
 
             // level 3 nodes
@@ -35,11 +34,10 @@ namespace RTSP.Osu
             statusNode.Precedes(modsNode);
 
             // attach to level 1 nodes
-            beatmapNode.Precedes(redLinesNode);
             modsNode.Precedes(bpmNode);
 
             // attach to level 2 nodes
-            redLinesNode.Precedes(bpmNode);
+            beatmapNode.Precedes(bpmNode);
             mapBreakNode.Follows(beatmapNode, mapTimeNode);
 
             sp.AddEventHandler_NewStateCreated(StateCreatedHandler);
