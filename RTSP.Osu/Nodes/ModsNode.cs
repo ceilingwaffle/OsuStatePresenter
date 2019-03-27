@@ -30,6 +30,7 @@ namespace RTSP.Osu.Nodes
             }
             else
             {
+                // use existing mods value stored on this Node
                 var mods = GetValue();
 
                 if (mods is null)
