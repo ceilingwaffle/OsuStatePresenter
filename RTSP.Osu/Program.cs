@@ -38,7 +38,7 @@ namespace RTSP.Osu
             // attach to level 2 nodes
             beatmapNode.Precedes(bpmNode);
             mapBreakNode.Follows(beatmapNode, mapTimeNode);
-            ppNowNode.Follows(statusNode, modsNode, beatmapNode);
+            ppNowNode.Follows(statusNode, modsNode, beatmapNode, mapTimeNode);
 
             sp.AddEventHandler_NewStateCreated(StateCreatedHandler);
 
