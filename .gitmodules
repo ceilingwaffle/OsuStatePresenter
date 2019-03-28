@@ -1,0 +1,6 @@
+[submodule "RTSP.Osu/vendor/Piotrekol/StreamCompanion"]
+	path = RTSP.Osu/vendor/Piotrekol/StreamCompanion
+	url = https://github.com/Piotrekol/StreamCompanion.git
+[submodule "RTSP.Osu/vendor/Piotrekol/CollectionManager"]
+	path = RTSP.Osu/vendor/Piotrekol/CollectionManager
+	url = https://github.com/Piotrekol/CollectionManager.git
