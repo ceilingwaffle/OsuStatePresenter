@@ -1,0 +1,6 @@
+[submodule "submodules/Piotrekol/StreamCompanion"]
+	path = submodules/Piotrekol/StreamCompanion
+	url = https://github.com/Piotrekol/StreamCompanion.git
+[submodule "submodules/Piotrekol/osu"]
+	path = submodules/Piotrekol/osu
+	url = https://github.com/Piotrekol/osu.git
