@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RTSP.Osu")]
+[assembly: AssemblyTitle("OsuStatePresenter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RTSP.Osu")]
+[assembly: AssemblyProduct("OsuStatePresenter")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("036adc3b-b440-4082-9aec-1d9f60804ffd")]
+[assembly: Guid("833bc756-73c6-475d-8e56-6f7b3a47aa2f")]
 
 // Version information for an assembly consists of the following four values:
 //

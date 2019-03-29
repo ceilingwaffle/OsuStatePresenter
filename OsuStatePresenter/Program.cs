@@ -1,8 +1,8 @@
-﻿using RTSP.Core;
-using RTSP.Osu.Nodes;
+﻿using DependentValuePresentationFramework;
+using OsuStatePresenter.Nodes;
 using System;
 
-namespace RTSP.Osu
+namespace OsuStatePresenter
 {
     class Program
     {

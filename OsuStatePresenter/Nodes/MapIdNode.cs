@@ -1,7 +1,7 @@
-﻿using RTSP.Core;
+﻿using DependentValuePresentationFramework;
 using System.Threading.Tasks;
 
-namespace RTSP.Osu.Nodes
+namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "MapID")]
     class MapIdNode : OsuNode

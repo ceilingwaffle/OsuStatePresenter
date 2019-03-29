@@ -1,9 +1,10 @@
 ﻿using System;
 using System.CodeDom;
 using System.Threading.Tasks;
-using RTSP.Core;
+using DependentValuePresentationFramework;
+using OsuStatePresenter;
 
-namespace RTSP.Osu.Nodes
+namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "Mods")]
     class ModsNode : OsuNode

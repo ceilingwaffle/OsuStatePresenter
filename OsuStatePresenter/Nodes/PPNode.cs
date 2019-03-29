@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using RTSP.Core;
+using DependentValuePresentationFramework;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ using PpCalculator;
 using OsuMemoryDataProvider;
 using System.Collections.Generic;
 
-namespace RTSP.Osu.Nodes
+namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "PPNow")]
     class PPNode : OsuNode

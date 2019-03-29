@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RTSP.Osu
+namespace OsuStatePresenter
 {
     /// <summary>
     /// From: https://github.com/ppy/osu-api/wiki#mods

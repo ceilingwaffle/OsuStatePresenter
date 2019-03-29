@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{036ADC3B-B440-4082-9AEC-1D9F60804FFD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RTSP.Osu</RootNamespace>
-    <AssemblyName>RTSP.Osu</AssemblyName>
+    <RootNamespace>OsuStatePresenter</RootNamespace>
+    <AssemblyName>OsuStatePresenter</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -51,10 +51,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\RTSP.Core\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\RTSP.Core\packages\NLog.4.6.0\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.6.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="osu!BMAPI">
       <HintPath>.\osu!BMAPI.dll</HintPath>
@@ -103,9 +103,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RTSP.Core\RTSP.Core.csproj">
+    <ProjectReference Include="..\..\dvpf\RTSP.Core\DependentValuePresentationFramework.csproj">
       <Project>{8653a255-b83d-4621-b25f-703a43c6eec9}</Project>
-      <Name>RTSP.Core</Name>
+      <Name>DependentValuePresentationFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

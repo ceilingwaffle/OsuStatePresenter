@@ -1,10 +1,10 @@
-﻿using RTSP.Core;
+﻿using DependentValuePresentationFramework;
 using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RTSP.Osu.Nodes
+namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "MapTime")]
     class MapTimeNode : OsuNode

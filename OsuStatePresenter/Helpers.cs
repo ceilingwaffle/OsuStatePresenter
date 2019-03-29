@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RTSP.Osu
+namespace OsuStatePresenter
 {
     internal static class Helpers
     {

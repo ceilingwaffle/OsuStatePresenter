@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using RTSP.Core;
+using DependentValuePresentationFramework;
 using System;
 using System.ServiceModel;
 
-namespace RTSP.Osu.Nodes
+namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "CurrentBPM")]
     class BpmNode : OsuNode

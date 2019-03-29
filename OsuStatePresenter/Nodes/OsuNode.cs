@@ -1,10 +1,10 @@
-﻿using RTSP.Core;
+﻿using DependentValuePresentationFramework;
 using OsuMemoryDataProvider;
 using System.Threading;
 using System.Reflection;
 using System;
 
-namespace RTSP.Osu.Nodes
+namespace OsuStatePresenter.Nodes
 {
     abstract class OsuNode : Node
     {

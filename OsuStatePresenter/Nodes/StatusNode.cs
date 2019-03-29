@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using RTSP.Core;
+using DependentValuePresentationFramework;
 using System;
 
-namespace RTSP.Osu.Nodes
+namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "GameStatus")]
     class StatusNode : OsuNode
