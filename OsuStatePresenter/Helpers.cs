@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,11 @@ namespace OsuStatePresenter
             int randIndex = Rand(0, n - 1);
 
             return strings[randIndex];
+        }
+
+        internal static string CurrentExeDirectory()
+        {
+            return Path.Combine(Environment.CurrentDirectory);
         }
     }
 }

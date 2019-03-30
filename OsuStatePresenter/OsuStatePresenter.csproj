@@ -109,4 +109,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(SolutionDir)vendor\oppai\3.2.0\oppai.dll $(TargetDir)oppai.dll 
+copy $(SolutionDir)vendor\oppai\3.2.0\oppai.exe $(TargetDir)oppai.exe
+copy $(SolutionDir)vendor\oppai\3.2.0\oppai.lib $(TargetDir)oppai.lib</PostBuildEvent>
+  </PropertyGroup>
 </Project>

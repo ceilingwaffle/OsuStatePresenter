@@ -21,8 +21,7 @@ namespace OsuStatePresenter.Nodes
             var mods = (string)modsNode?.GetValue() ?? "";
             var beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
 
-            float bpm = 0;
-            bpm = CalculateBpm(mapTime, beatmap, bpm);
+            float bpm = CalculateBpm(mapTime, beatmap);
 
             // unknown bpm
             if (bpm <= 0)
@@ -31,10 +30,16 @@ namespace OsuStatePresenter.Nodes
             return await Task.FromResult(bpm);
         }
 
-        private float CalculateBpm(int mapTime, BMAPI.v1.Beatmap beatmap, float bpm)
+        private float CalculateBpm(int mapTime, BMAPI.v1.Beatmap beatmap)
         {
             // TODO: Optimize? Probably a faster way of doing this instead of Reverse()? e.g. using a temp variable for the previous tp.
             // https://osu.ppy.sh/help/wiki/osu!_File_Formats/Osu_(file_format)#timing-points
+
+            float bpm = 0.0f;
+
+            if (beatmap is null)
+                return bpm;
+
             var timingPoints = beatmap.TimingPoints;
             timingPoints.Reverse();
 

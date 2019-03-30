@@ -5,11 +5,7 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsuStatePresenter", "OsuStatePresenter\OsuStatePresenter.csproj", "{036ADC3B-B440-4082-9AEC-1D9F60804FFD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{2DAE5FD3-64A5-4C81-B58D-38ECAA8220E4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependentValuePresentationFramework", "..\dvpf\RTSP.Core\DependentValuePresentationFramework.csproj", "{8653A255-B83D-4621-B25F-703A43C6EEC9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StreamCompanion", "StreamCompanion", "{CE282ACF-6C5F-41EC-8FC8-CF32CB968B90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,9 +74,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{CE282ACF-6C5F-41EC-8FC8-CF32CB968B90} = {2DAE5FD3-64A5-4C81-B58D-38ECAA8220E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90CD718D-2503-4BBC-867D-E8EF9C9DBC77}
