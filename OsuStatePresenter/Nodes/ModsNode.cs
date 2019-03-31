@@ -1,7 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Threading.Tasks;
-using DependentValuePresentationFramework;
+using DVPF.Core;
 using OsuStatePresenter;
 
 namespace OsuStatePresenter.Nodes

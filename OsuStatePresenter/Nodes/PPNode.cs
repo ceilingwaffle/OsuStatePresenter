@@ -1,6 +1,6 @@
 ﻿using BMAPI.v1;
 using BMAPI.v1.HitObjects;
-using DependentValuePresentationFramework;
+using DVPF.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

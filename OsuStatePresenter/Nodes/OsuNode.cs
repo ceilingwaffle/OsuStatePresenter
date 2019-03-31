@@ -1,4 +1,4 @@
-﻿using DependentValuePresentationFramework;
+﻿using DVPF.Core;
 using OsuMemoryDataProvider;
 using System.Threading;
 using System.Reflection;

@@ -1,13 +1,15 @@
 ﻿using System.Threading.Tasks;
-using DependentValuePresentationFramework;
+using DVPF.Core;
 using System;
+using System.IO;
 
 namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: false, name: "Beatmap")]
     class BeatmapNode : OsuNode
     {
-        private readonly string _osuSongsFolderPath = @"G:\osu!\Songs\";
+        // TODO: Read path from config
+        private readonly string _osuSongsFolderPath = @"C:\osu!\Songs\";
 
         public override async Task<object> DetermineValueAsync()
         {
@@ -19,6 +21,13 @@ namespace OsuStatePresenter.Nodes
             string mapFolderName = _memoryReader.GetMapFolderName();
             string mapFileName = _memoryReader.GetOsuFileName();
             string fullMapFilePath = BuildMapPathString(mapFolderName, mapFileName);
+
+            if (!File.Exists(fullMapFilePath))
+            {
+                _logger.Warn($"Beatmap file not found: {fullMapFilePath}");
+                return null;
+            }
+
             BMAPI.v1.Beatmap beatmap = BuildBeatmapFromFile(fullMapFilePath);
 
             return await Task.FromResult(beatmap);

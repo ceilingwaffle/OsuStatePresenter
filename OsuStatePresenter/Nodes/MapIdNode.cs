@@ -1,4 +1,4 @@
-﻿using DependentValuePresentationFramework;
+﻿using DVPF.Core;
 using System.Threading.Tasks;
 
 namespace OsuStatePresenter.Nodes

@@ -103,9 +103,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\dvpf\RTSP.Core\DependentValuePresentationFramework.csproj">
+    <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj">
       <Project>{8653a255-b83d-4621-b25f-703a43c6eec9}</Project>
-      <Name>DependentValuePresentationFramework</Name>
+      <Name>DVPF.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

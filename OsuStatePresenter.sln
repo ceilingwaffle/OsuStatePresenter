@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsuStatePresenter", "OsuStatePresenter\OsuStatePresenter.csproj", "{036ADC3B-B440-4082-9AEC-1D9F60804FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependentValuePresentationFramework", "..\dvpf\RTSP.Core\DependentValuePresentationFramework.csproj", "{8653A255-B83D-4621-B25F-703A43C6EEC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependentValuePresentationFramework", "..\dvpf\DVPF.Core\DVPF.Core.csproj", "{8653A255-B83D-4621-B25F-703A43C6EEC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

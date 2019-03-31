@@ -1,4 +1,4 @@
-﻿using DependentValuePresentationFramework;
+﻿using DVPF.Core;
 using System;
 using System.Diagnostics;
 using System.Threading;

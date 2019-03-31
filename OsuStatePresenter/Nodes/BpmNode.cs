@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DependentValuePresentationFramework;
+using DVPF.Core;
 using System;
 using System.ServiceModel;
 

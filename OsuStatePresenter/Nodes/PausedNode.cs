@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using DependentValuePresentationFramework;
+using DVPF.Core;
 using System;
 
 namespace OsuStatePresenter.Nodes
 {
     // TODO: Build the "paused" status into the custom Status class
-    [StateProperty(enabled: true, name: "IsPaused")]
+    [StateProperty(enabled: true, name: "SongIsPaused")]
     class PausedNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
