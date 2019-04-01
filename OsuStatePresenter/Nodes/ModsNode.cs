@@ -6,7 +6,7 @@ using OsuStatePresenter;
 
 namespace OsuStatePresenter.Nodes
 {
-    [StateProperty(enabled: true, name: "Mods")]
+    [StateProperty(enabled: true, name: "Mods", strictValue: true)]
     class ModsNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()

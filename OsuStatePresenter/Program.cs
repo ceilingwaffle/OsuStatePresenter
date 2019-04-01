@@ -17,11 +17,11 @@ namespace OsuStatePresenter
             var sp = new StatePresenter();
 
             // level 0 nodes (master nodes)
-            var mapTimeNode = new MapTimeNode();
             var mapIdNode = new MapIdNode();
             var statusNode = new StatusNode();
 
             // level 1 nodes
+            var mapTimeNode = new MapTimeNode();
             var beatmapNode = new BeatmapNode();
             var pausedNode = new PausedNode();
             var modsNode = new ModsNode();
@@ -32,7 +32,7 @@ namespace OsuStatePresenter
             var ppNowNode = new PPNode();
 
             // attach to level 0 nodes
-            mapIdNode.Precedes(beatmapNode);
+            mapIdNode.Precedes(beatmapNode, mapTimeNode, modsNode);
             mapTimeNode.Precedes(bpmNode, pausedNode);
             statusNode.Precedes(modsNode);
 

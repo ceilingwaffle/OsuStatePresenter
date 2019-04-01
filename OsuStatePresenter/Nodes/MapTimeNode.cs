@@ -1,12 +1,11 @@
 ﻿using DVPF.Core;
 using System;
 using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace OsuStatePresenter.Nodes
 {
-    [StateProperty(enabled: true, name: "MapTime")]
+    [StateProperty(enabled: true, name: "MapTime", strictValue: true)]
     class MapTimeNode : OsuNode
     {
         /// <summary>

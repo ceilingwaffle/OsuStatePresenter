@@ -9,7 +9,8 @@ namespace OsuStatePresenter.Nodes
     class BeatmapNode : OsuNode
     {
         // TODO: Read path from config
-        private readonly string _osuSongsFolderPath = @"C:\osu!\Songs\";
+        //private readonly string _osuSongsFolderPath = @"C:\osu!\Songs\";
+        private readonly string _osuSongsFolderPath = @"C:\Users\waffle\AppData\Local\osu!\Songs\";
 
         public override async Task<object> DetermineValueAsync()
         {
