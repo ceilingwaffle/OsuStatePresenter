@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -173,6 +174,8 @@ namespace OsuStatePresenter.Nodes
         {
             int currentObjectNumber = GetCurrentBeatmapObjectNumber(beatmap, time);
 
+            CopyOppaiResourcesToOutputDir();
+
             // TODO: Optimize - don't re-launch the process every time
             Process p = new Process();
             p.StartInfo.UseShellExecute = false;
@@ -190,6 +193,24 @@ namespace OsuStatePresenter.Nodes
             p.WaitForExit();
 
             return GetPPFromOppaiOutput(jsonOutput);
+        }
+
+        private static void CopyOppaiResourcesToOutputDir()
+        {
+            byte[] OppaiDLL = Properties.Resources.OppaiDLL;
+            byte[] OppaiExe = Properties.Resources.OppaiExe;
+            byte[] OppaiLib = Properties.Resources.OppaiLib;
+
+            string path;
+
+            path = Path.Combine(Helpers.CurrentExeDirectory(), "oppai.exe");
+            File.WriteAllBytes(path, Properties.Resources.OppaiExe);
+
+            path = Path.Combine(Helpers.CurrentExeDirectory(), "oppai.dll");
+            File.WriteAllBytes(path, Properties.Resources.OppaiDLL);
+
+            path = Path.Combine(Helpers.CurrentExeDirectory(), "oppai.lib");
+            File.WriteAllBytes(path, Properties.Resources.OppaiLib);
         }
 
         private int GetCurrentBeatmapObjectNumber(Beatmap beatmap, int currentMapTime)

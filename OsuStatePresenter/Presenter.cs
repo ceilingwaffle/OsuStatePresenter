@@ -1,20 +1,32 @@
 ﻿using DVPF.Core;
-using OsuStatePresenter.Nodes;
 using System;
+using OsuStatePresenter.Nodes;
 
 namespace OsuStatePresenter
 {
-    class Program
+    public class Presenter
     {
         private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
-        static void Main(string[] args)
+        public StatePresenter StatePresenter { get; set; }
+
+        public Presenter(Action<State> stateCreatedHandler)
+        {
+            _SetupStatePresenter(stateCreatedHandler);
+            _SetupDefaultOsuNodes();
+        }
+
+        private void _SetupStatePresenter(Action<State> stateCreatedHandler)
+        {
+            StatePresenter = new StatePresenter();
+            StatePresenter.AddEventHandler_NewStateCreated(stateCreatedHandler);
+        }
+
+        private void _SetupDefaultOsuNodes()
         {
             // TODO: All nodes disabled by default. User sets true to static field named Enabled? System enables parents as needed. This property is for actually scanning the node (different than the "StatePresentable" prop on StatePropAttribute)
             // Program should initialize nodes by scanning this "enabled" field. Base Node should have abstract method Node.Present()/Hide() which sets the StatePropAttribute "enabled" to true/false.
             // Base node should also have method Node.Rename(string) which renames the StatePropAttribute "name" prop.
-
-            var sp = new StatePresenter();
 
             // level 0 nodes (master nodes)
             var mapIdNode = new MapIdNode();
@@ -43,25 +55,14 @@ namespace OsuStatePresenter
             beatmapNode.Precedes(bpmNode);
             mapBreakNode.Follows(beatmapNode, mapTimeNode);
             ppNowNode.Follows(statusNode, modsNode, beatmapNode, mapTimeNode);
-
-            sp.AddEventHandler_NewStateCreated(StateCreatedHandler);
-
-            // start scanning
-            var scannerTask = sp.StartAsync();
-
-            // keep the console open
-            while (true)
-            {
-                Console.ReadKey();
-
-                //var a = sp;
-            }
         }
 
-        protected static void StateCreatedHandler(State state)
+        public void Start()
         {
-            // TODO
-            _logger.Info("State created:\n{0}", state);
+            // start scanning
+            var scannerTask = StatePresenter.StartAsync();
+
         }
+
     }
 }

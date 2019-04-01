@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsuStatePresenter", "OsuStatePresenter\OsuStatePresenter.csproj", "{036ADC3B-B440-4082-9AEC-1D9F60804FFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependentValuePresentationFramework", "..\dvpf\DVPF.Core\DVPF.Core.csproj", "{8653A255-B83D-4621-B25F-703A43C6EEC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVPF.Core", "..\dvpf\DVPF.Core\DVPF.Core.csproj", "{8653A255-B83D-4621-B25F-703A43C6EEC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleOsuImplementation", "ConsoleOsuImplementation\ConsoleOsuImplementation.csproj", "{ECB90195-4E3F-481C-9E18-B5D345AE5984}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,30 @@ Global
 		{8653A255-B83D-4621-B25F-703A43C6EEC9}.Remote debug|x64.Build.0 = Release|x64
 		{8653A255-B83D-4621-B25F-703A43C6EEC9}.Remote debug|x86.ActiveCfg = Release|x86
 		{8653A255-B83D-4621-B25F-703A43C6EEC9}.Remote debug|x86.Build.0 = Release|x86
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug remote|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug remote|Any CPU.Build.0 = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug remote|x64.ActiveCfg = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug remote|x64.Build.0 = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug remote|x86.ActiveCfg = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug remote|x86.Build.0 = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Release|x64.Build.0 = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Release|x86.Build.0 = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Remote debug|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Remote debug|Any CPU.Build.0 = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Remote debug|x64.ActiveCfg = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Remote debug|x64.Build.0 = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Remote debug|x86.ActiveCfg = Release|Any CPU
+		{ECB90195-4E3F-481C-9E18-B5D345AE5984}.Remote debug|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
