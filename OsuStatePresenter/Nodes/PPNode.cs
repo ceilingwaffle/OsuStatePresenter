@@ -164,6 +164,7 @@ namespace OsuStatePresenter.Nodes
 
         private readonly Beatmap beatmap;
         private TimeSpan endDelayTime = TimeSpan.FromMilliseconds(5000);
+        private static bool _oppaiFilesCopies = false;
 
         public OppaiCalc(Beatmap beatmap)
         {
@@ -174,7 +175,11 @@ namespace OsuStatePresenter.Nodes
         {
             int currentObjectNumber = GetCurrentBeatmapObjectNumber(beatmap, time);
 
-            CopyOppaiResourcesToOutputDir();
+            if (!_oppaiFilesCopies)
+            {
+                CopyOppaiResourcesToOutputDir();
+                _oppaiFilesCopies = true;
+            }
 
             // TODO: Optimize - don't re-launch the process every time
             Process p = new Process();
@@ -197,6 +202,8 @@ namespace OsuStatePresenter.Nodes
 
         private static void CopyOppaiResourcesToOutputDir()
         {
+            _logger.Debug("Copying oppai resource files...");
+
             byte[] OppaiDLL = Properties.Resources.OppaiDLL;
             byte[] OppaiExe = Properties.Resources.OppaiExe;
             byte[] OppaiLib = Properties.Resources.OppaiLib;
@@ -229,6 +236,7 @@ namespace OsuStatePresenter.Nodes
                 return 1;
             }
 
+            // TODO: Some other solution for this problem instead of delaying the end time.
             if (currentMapTime + endDelayTime.Milliseconds >= hitObjects.Last().StartTime)
             {
                 //_logger.Info($"c: {currentMapTime}, {hitObjects.Last().StartTime}, {hitObjects.Count}");
