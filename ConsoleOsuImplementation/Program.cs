@@ -18,6 +18,7 @@ namespace ConsoleOsuImplementation
             while (true)
             {
                 Console.ReadKey();
+                presenter.Stop();
             }
         }
 

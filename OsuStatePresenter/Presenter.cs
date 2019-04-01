@@ -60,8 +60,14 @@ namespace OsuStatePresenter
         public void Start()
         {
             // start scanning
-            var scannerTask = StatePresenter.StartAsync();
+            StatePresenter.StartScannerLoop();
 
+        }
+
+        public void Stop()
+        {
+            // stop scanning
+            StatePresenter.StopScannerLoop();
         }
 
     }
