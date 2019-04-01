@@ -22,6 +22,8 @@ namespace OsuStatePresenter.Nodes
             var statusNow = statusNode.GetValue();
             var statusBefore = statusNode.GetPreviousValue();
 
+            //_logger.Info($"{statusBefore} -> {statusNow}");
+
             // TODO: Sometimes mods doesn't update on the state. Maybe because a previous mods update task is waiting to finish?
 
             // only read mods if status is "playing" and the previous status was not "playing".
@@ -49,7 +51,7 @@ namespace OsuStatePresenter.Nodes
 
         private string ReadMods()
         {
-            _logger.Info("Calculating mods.........");
+            _logger.Debug("Calculating mods.........");
 
             int modsBitwise = _memoryReader.GetMods();
             string mods = ((Mods)modsBitwise).ToString();

@@ -15,6 +15,8 @@ namespace OsuStatePresenter.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
+            // TODO: Fix oppai setting value to "max PP" at the beginning (when maptime = 0 or near start).
+
             //  old PpCalculator code:
             //  See PpIfRestFcd() in https://github.com/Piotrekol/StreamCompanion/blob/master/plugins/OsuMemoryEventSource/RawMemoryDataProcessor.cs
             //SetCurrentMap(beatmap, mods, osuFileLocation, playMode);
