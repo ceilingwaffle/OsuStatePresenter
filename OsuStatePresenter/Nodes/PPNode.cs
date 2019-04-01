@@ -162,18 +162,18 @@ namespace OsuStatePresenter.Nodes
     {
         protected static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private readonly Beatmap beatmap;
-        private TimeSpan endDelayTime = TimeSpan.FromMilliseconds(5000);
+        private readonly Beatmap _beatmap;
+        private TimeSpan _endDelayTime = TimeSpan.FromMilliseconds(5000);
         private static bool _oppaiFilesCopies = false;
 
         public OppaiCalc(Beatmap beatmap)
         {
-            this.beatmap = beatmap;
+            _beatmap = beatmap;
         }
 
         public double CalculatePP(int time = -1)
         {
-            int currentObjectNumber = GetCurrentBeatmapObjectNumber(beatmap, time);
+            int currentObjectNumber = GetCurrentBeatmapObjectNumber(_beatmap, time);
 
             if (!_oppaiFilesCopies)
             {
@@ -186,7 +186,7 @@ namespace OsuStatePresenter.Nodes
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.FileName = $"{Helpers.CurrentExeDirectory()}\\oppai.exe";
             // TODO: Include other playdata e.g. gameMode, mods, nx100, nx50, misses
-            p.StartInfo.Arguments = $"\"{beatmap.Filename}\" -ojson -end{currentObjectNumber}";
+            p.StartInfo.Arguments = $"\"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}";
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.RedirectStandardError = false;
             p.StartInfo.RedirectStandardOutput = true;
@@ -237,7 +237,7 @@ namespace OsuStatePresenter.Nodes
             }
 
             // TODO: Some other solution for this problem instead of delaying the end time.
-            if (currentMapTime + endDelayTime.Milliseconds >= hitObjects.Last().StartTime)
+            if (currentMapTime + _endDelayTime.Milliseconds >= hitObjects.Last().StartTime)
             {
                 //_logger.Info($"c: {currentMapTime}, {hitObjects.Last().StartTime}, {hitObjects.Count}");
                 return hitObjects.Count;
