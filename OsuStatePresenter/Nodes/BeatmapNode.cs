@@ -17,7 +17,7 @@ namespace OsuStatePresenter.Nodes
             if (mapIdNode is null)
                 return null;
 
-            // TODO: Optimize - Find a better way of caching the value of _osuSongsFolderPath (shouldn't have to re-scan for the osu process path multiple times).
+            // TODO: OPTIMIZE - Find a better way of caching the value of _osuSongsFolderPath (shouldn't have to re-scan for the osu process path multiple times).
             string fullMapFilePath = BuildFullMapFilePath();
             if (!File.Exists(fullMapFilePath))
             {
@@ -46,7 +46,7 @@ namespace OsuStatePresenter.Nodes
 
         private static string BuildOsuSongsFolderPath(string osuProcessDirectory)
         {
-            // TODO: Get "Songs" folder name from user config file in osu dir (e.g. osu!.waffle.cfg)
+            // TODO: UNFINISHED - Get "Songs" folder name from user config file in osu dir (e.g. osu!.waffle.cfg)
             return Path.Combine(osuProcessDirectory, "Songs") + Path.DirectorySeparatorChar.ToString();
         }
 
@@ -57,7 +57,7 @@ namespace OsuStatePresenter.Nodes
 
         private BMAPI.v1.Beatmap BuildBeatmapFromFile(string fullMapFilePath)
         {
-            // TODO: Build decorated custom-beatmap class object (to reduce external class coupling to BMAPI).
+            // TODO: REFACTOR - Build decorated custom-beatmap class object (to reduce external class coupling to BMAPI).
             return new BMAPI.v1.Beatmap(fullMapFilePath);
         }
     }

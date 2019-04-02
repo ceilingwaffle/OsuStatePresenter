@@ -39,7 +39,7 @@ namespace OsuStatePresenter
 
         internal static string GetProcessDirectory(string processName)
         {
-            // TODO: Optimize - shouldn't need to iterate over every process.
+            // TODO: OPTIMIZE - shouldn't need to iterate over every process.
 
             var wmiQueryString = "SELECT ProcessId, ExecutablePath, CommandLine FROM Win32_Process";
             using (var searcher = new ManagementObjectSearcher(wmiQueryString))

@@ -9,7 +9,7 @@ namespace OsuStatePresenter.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
-            // TODO: Create custom object for OsuStatus
+            // TODO: REFACTOR - Create custom object for OsuStatus
 
             string status = _GetMemoryStatus();
 

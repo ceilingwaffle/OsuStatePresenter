@@ -29,8 +29,12 @@ namespace OsuStatePresenter
 
         private void _SetupDefaultOsuNodes()
         {
-            // TODO: All nodes disabled by default. User sets true to static field named Enabled? System enables parents as needed. This property is for actually scanning the node (different than the "StatePresentable" prop on StatePropAttribute)
-            // Program should initialize nodes by scanning this "enabled" field. Base Node should have abstract method Node.Present()/Hide() which sets the StatePropAttribute "enabled" to true/false.
+            // TODO: UNFINISHED - All nodes disabled by default. User sets true to static field named Enabled? System enables parents as needed. 
+            // This property is for actually scanning the node (different than the "StatePresentable" prop on StatePropAttribute).
+            //
+            // Program should initialize nodes by scanning this "enabled" field. Base Node should have abstract method 
+            // Node.Present()/Hide() which sets the StatePropAttribute "enabled" to true/false.
+            //
             // Base node should also have method Node.Rename(string) which renames the StatePropAttribute "name" prop.
 
             // level 0 nodes (master nodes)

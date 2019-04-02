@@ -16,8 +16,6 @@ namespace OsuStatePresenter.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
-            // TODO: Fix oppai setting value to "max PP" at the beginning (when maptime = 0 or near start).
-
             //  old PpCalculator code:
             //  See PpIfRestFcd() in https://github.com/Piotrekol/StreamCompanion/blob/master/plugins/OsuMemoryEventSource/RawMemoryDataProcessor.cs
             //SetCurrentMap(beatmap, mods, osuFileLocation, playMode);
@@ -181,11 +179,11 @@ namespace OsuStatePresenter.Nodes
                 _oppaiFilesCopies = true;
             }
 
-            // TODO: Optimize - don't re-launch the process every time
+            // TODO: OPTIMIZE - don't re-launch the process every time
             Process p = new Process();
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.FileName = $"{Helpers.CurrentExeDirectory()}\\oppai.exe";
-            // TODO: Include other playdata e.g. gameMode, mods, nx100, nx50, misses
+            // TODO: UNFINISHED - Include other playdata e.g. gameMode, mods, nx100, nx50, misses
 
             //_logger.Info($"PP command: \"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}");
             p.StartInfo.Arguments = $"\"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}";
@@ -238,7 +236,7 @@ namespace OsuStatePresenter.Nodes
                 return 1;
             }
 
-            // TODO: Some other solution for this problem instead of delaying the end time.
+            // TODO: UNFINISHED (hacky temp solution) - Some other solution for this problem instead of delaying the end time.
             if (currentMapTime + _endDelayTime.Milliseconds >= hitObjects.Last().StartTime)
             {
                 //_logger.Info($"c: {currentMapTime}, {hitObjects.Last().StartTime}, {hitObjects.Count}");

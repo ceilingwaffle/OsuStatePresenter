@@ -39,9 +39,8 @@ namespace ConsoleOsuImplementation
             _logger.Info("ΔT = {0} ms", (now - _lastTime));
             _lastTime = now;
 
-            // TODO: Do something other than log the state
+            Console.WriteLine("State created:\n{0}", state);
             _logger.Info("State created:\n{0}", state);
-
         }
     }
 }

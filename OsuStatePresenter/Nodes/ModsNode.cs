@@ -24,8 +24,6 @@ namespace OsuStatePresenter.Nodes
 
             //_logger.Info($"{statusBefore} -> {statusNow}");
 
-            // TODO: Sometimes mods doesn't update on the state. Maybe because a previous mods update task is waiting to finish?
-
             // only read mods if status is "playing" and the previous status was not "playing".
             if (statusNow.Equals("Playing") && !statusNow.Equals(statusBefore))
             {
@@ -45,7 +43,7 @@ namespace OsuStatePresenter.Nodes
                 return await Task.FromResult(mods);
             }
 
-            // TODO: Win32Exception not being caught from OsuMemory DLL when using osu Cutting Edge version
+            // TODO: BUG - Win32Exception not being caught from OsuMemory DLL when using osu Cutting Edge version
 
         }
 

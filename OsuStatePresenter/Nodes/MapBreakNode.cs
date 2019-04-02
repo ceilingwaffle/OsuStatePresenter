@@ -8,7 +8,7 @@ namespace OsuStatePresenter.Nodes
     {
         public override async Task<object> DetermineValueAsync()
         {
-            // TODO
+            // TODO: UNFINISHED
             return await Task.FromResult(false);
         }
     }

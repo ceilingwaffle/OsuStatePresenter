@@ -48,7 +48,7 @@ namespace OsuStatePresenter.Nodes
 
             int mapTime = _lastTimeRead;
 
-            // TODO: System.IndexOutOfRangeException not being caught from OsuMemory DLL (occurs when game not running)
+            // TODO: BUG - System.IndexOutOfRangeException not being caught from OsuMemory DLL (occurs when game not running)
             mapTime = _memoryReader.ReadPlayTime();
 
             if (_timer.Elapsed.CompareTo(_minTime) > 0) // timer time greater than min time
