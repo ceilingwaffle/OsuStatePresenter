@@ -56,9 +56,6 @@
     <Reference Include="osu!BMAPI">
       <HintPath>.\osu!BMAPI.dll</HintPath>
     </Reference>
-    <Reference Include="OsuMemoryDataProvider">
-      <HintPath>.\OsuMemoryDataProvider.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -75,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mods.cs" />
+    <Compile Include="MyOsuMemoryReader.cs" />
     <Compile Include="Nodes\BeatmapNode.cs" />
     <Compile Include="Nodes\BpmNode.cs" />
     <Compile Include="Helpers.cs" />
@@ -111,6 +109,14 @@
     <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj">
       <Project>{8653a255-b83d-4621-b25f-703a43c6eec9}</Project>
       <Name>DVPF.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\submodules\Piotrekol\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj">
+      <Project>{d117800f-072d-4ae4-9679-3e2a129a1a3c}</Project>
+      <Name>OsuMemoryDataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\submodules\Piotrekol\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj">
+      <Project>{9960d641-300a-432c-aa04-c351a99b9adb}</Project>
+      <Name>ProcessMemoryDataFinder</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
