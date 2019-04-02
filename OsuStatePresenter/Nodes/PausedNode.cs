@@ -7,7 +7,7 @@ namespace OsuStatePresenter.Nodes
 {
     // TODO: Build the "paused" status into the custom Status class
     [StateProperty(enabled: true, name: "SongIsPaused")]
-    class PausedNode : OsuNode
+    public class PausedNode : OsuNode
     {
         // TODO: Fix bug: Jumping around in the map editor flickers Paused to true then back to false.
         // Possible solution: Use another timer to check the "expected" time, and do a fuzzy check around that time. If it's a huge difference, still assume the map is paused.

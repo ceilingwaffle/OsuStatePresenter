@@ -6,7 +6,7 @@ using System;
 
 namespace OsuStatePresenter.Nodes
 {
-    abstract class OsuNode : Node
+    abstract public class OsuNode : Node
     {
         protected static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
         protected IOsuMemoryReader _memoryReader;

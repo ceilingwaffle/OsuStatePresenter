@@ -6,7 +6,7 @@ using System.ServiceModel;
 namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "CurrentBPM")]
-    class BpmNode : OsuNode
+    public class BpmNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {

@@ -4,13 +4,13 @@ using OsuStatePresenter.Nodes;
 
 namespace OsuStatePresenter
 {
-    public class Presenter
+    public class OsuPresenter
     {
         private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
         public StatePresenter StatePresenter { get; set; }
 
-        public Presenter(Action<State> stateCreatedHandler)
+        public OsuPresenter(Action<State> stateCreatedHandler)
         {
             _SetupStatePresenter(stateCreatedHandler);
             _SetupDefaultOsuNodes();
@@ -20,6 +20,11 @@ namespace OsuStatePresenter
         {
             StatePresenter = new StatePresenter();
             StatePresenter.AddEventHandler_NewStateCreated(stateCreatedHandler);
+        }
+
+        public bool TryGetNode(Type type, out Node node)
+        {
+            return StatePresenter.NodeSupervisor.TryGetNode(type, out node);
         }
 
         private void _SetupDefaultOsuNodes()

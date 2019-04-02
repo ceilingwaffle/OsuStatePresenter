@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "PPNow")]
-    class PPNode : OsuNode
+    public class PPNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {

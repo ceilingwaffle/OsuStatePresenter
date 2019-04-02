@@ -5,7 +5,7 @@ using System;
 namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "GameStatus")]
-    class StatusNode : OsuNode
+    public class StatusNode : OsuNode
     {
         public override async Task<object> DetermineValueAsync()
         {

@@ -1,5 +1,6 @@
 ﻿using DVPF.Core;
 using OsuStatePresenter;
+using OsuStatePresenter.Nodes;
 using System;
 
 namespace ConsoleOsuImplementation
@@ -8,20 +9,26 @@ namespace ConsoleOsuImplementation
     {
         private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private static long _lastTime = 0;
+        private static long _lastTime = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
 
         static void Main(string[] args)
         {
-            _lastTime = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+            OsuPresenter presenter = new OsuPresenter(StateCreatedHandler);
 
-            Presenter presenter = new Presenter(StateCreatedHandler);
+            // handle value changed on a specific node
+            if (presenter.TryGetNode(typeof(BpmNode), out var bpmNode))
+            {
+                bpmNode.OnValueChange += (sender, e) => Console.WriteLine($"BPM: {bpmNode.GetValue()}");
+            }
 
+            // start the Presenter
             presenter.Start();
 
             // keep the console open
             while (true)
             {
                 Console.ReadKey();
+                Console.WriteLine("Key pressed. Stopping Presenter...");
                 presenter.Stop();
             }
         }

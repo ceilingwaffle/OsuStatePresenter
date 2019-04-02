@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: true, name: "MapTime", strictValue: true)]
-    class MapTimeNode : OsuNode
+    public class MapTimeNode : OsuNode
     {
         /// <summary>
         /// Used to simulate the current map time, until the _minTime time is reached.

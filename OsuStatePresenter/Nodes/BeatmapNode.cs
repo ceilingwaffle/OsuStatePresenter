@@ -6,12 +6,12 @@ using System.IO;
 namespace OsuStatePresenter.Nodes
 {
     [StateProperty(enabled: false, name: "Beatmap")]
-    class BeatmapNode : OsuNode
+    public class BeatmapNode : OsuNode
     {
         // TODO: Read path from config
         // TODO: Read osu path from process
-        //private readonly string _osuSongsFolderPath = @"C:\osu!\Songs\";
-        private readonly string _osuSongsFolderPath = @"C:\Users\waffle\AppData\Local\osu!\Songs\";
+        private readonly string _osuSongsFolderPath = @"C:\osu!\Songs\";
+        //private readonly string _osuSongsFolderPath = @"C:\Users\waffle\AppData\Local\osu!\Songs\";
 
         public override async Task<object> DetermineValueAsync()
         {
