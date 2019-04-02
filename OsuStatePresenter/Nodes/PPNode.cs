@@ -186,6 +186,9 @@ namespace OsuStatePresenter.Nodes
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.FileName = $"{Helpers.CurrentExeDirectory()}\\oppai.exe";
             // TODO: Include other playdata e.g. gameMode, mods, nx100, nx50, misses
+
+            _logger.Info($"PP command: \"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}");
+
             p.StartInfo.Arguments = $"\"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}";
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.RedirectStandardError = false;
@@ -230,7 +233,7 @@ namespace OsuStatePresenter.Nodes
                 return 1;
             }
 
-            if (currentMapTime < 0)
+            if (currentMapTime <= 0)
             {
                 //_logger.Info($"b: {currentMapTime}");
                 return 1;
@@ -245,9 +248,9 @@ namespace OsuStatePresenter.Nodes
 
             hitObjects.Reverse();
 
-            for (int i = 1; i <= hitObjects.Count; i++)
+            for (int i = 0; i < hitObjects.Count; i++)
             {
-                var ho = hitObjects[i - 1];
+                var ho = hitObjects[i];
 
                 if (currentMapTime >= ho.StartTime)
                 {
@@ -256,7 +259,7 @@ namespace OsuStatePresenter.Nodes
                 }
             }
 
-            return hitObjects.Count;
+            return 1;
         }
 
         private double GetPPFromOppaiOutput(string jsonOutput)
