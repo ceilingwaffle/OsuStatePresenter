@@ -8,10 +8,7 @@ namespace OsuStatePresenter.Nodes
     [StateProperty(enabled: false, name: "Beatmap")]
     public class BeatmapNode : OsuNode
     {
-        // TODO: Read path from config
-        // TODO: Read osu path from process
-        private readonly string _osuSongsFolderPath = @"C:\osu!\Songs\";
-        //private readonly string _osuSongsFolderPath = @"C:\Users\waffle\AppData\Local\osu!\Songs\";
+        private string _osuSongsFolderPath = BuildOsuSongsFolderPath(Helpers.GetProcessDirectory("osu!"));
 
         public override async Task<object> DetermineValueAsync()
         {
@@ -20,19 +17,37 @@ namespace OsuStatePresenter.Nodes
             if (mapIdNode is null)
                 return null;
 
-            string mapFolderName = _memoryReader.GetMapFolderName();
-            string mapFileName = _memoryReader.GetOsuFileName();
-            string fullMapFilePath = BuildMapPathString(mapFolderName, mapFileName);
-
+            // TODO: Optimize - Find a better way of caching the value of _osuSongsFolderPath (shouldn't have to re-scan for the osu process path multiple times).
+            string fullMapFilePath = BuildFullMapFilePath();
             if (!File.Exists(fullMapFilePath))
             {
-                _logger.Warn($"Beatmap file not found: {fullMapFilePath}");
-                return null;
+                // try re-scanning the osu process directory (e.g. if a different instance of osu! was opened from another location).
+                _osuSongsFolderPath = BuildOsuSongsFolderPath(Helpers.GetProcessDirectory("osu!"));
+                fullMapFilePath = BuildFullMapFilePath();
+                if (!File.Exists(fullMapFilePath))
+                {
+                    _logger.Warn($"Beatmap file not found: {fullMapFilePath}");
+                    return null;
+                }
             }
 
             BMAPI.v1.Beatmap beatmap = BuildBeatmapFromFile(fullMapFilePath);
 
             return await Task.FromResult(beatmap);
+        }
+
+        private string BuildFullMapFilePath()
+        {
+            string mapFolderName = _memoryReader.GetMapFolderName();
+            string mapFileName = _memoryReader.GetOsuFileName();
+            string fullMapFilePath = BuildMapPathString(mapFolderName, mapFileName);
+            return fullMapFilePath;
+        }
+
+        private static string BuildOsuSongsFolderPath(string osuProcessDirectory)
+        {
+            // TODO: Get "Songs" folder name from user config file in osu dir (e.g. osu!.waffle.cfg)
+            return Path.Combine(osuProcessDirectory, "Songs") + Path.DirectorySeparatorChar.ToString();
         }
 
         private string BuildMapPathString(string mapFolderName, string mapFileName)
