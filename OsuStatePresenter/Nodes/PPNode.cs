@@ -187,8 +187,7 @@ namespace OsuStatePresenter.Nodes
             p.StartInfo.FileName = $"{Helpers.CurrentExeDirectory()}\\oppai.exe";
             // TODO: Include other playdata e.g. gameMode, mods, nx100, nx50, misses
 
-            _logger.Info($"PP command: \"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}");
-
+            //_logger.Info($"PP command: \"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}");
             p.StartInfo.Arguments = $"\"{_beatmap.Filename}\" -ojson -end{currentObjectNumber}";
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.RedirectStandardError = false;
