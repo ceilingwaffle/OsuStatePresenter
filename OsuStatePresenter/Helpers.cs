@@ -66,5 +66,10 @@ namespace OsuStatePresenter
 
             return string.Empty;
         }
+
+        internal static bool FloatIsEquivalentToInt(float f, int i, double precision = 0.0000001)
+        {
+            return Math.Abs(f - i) < precision;
+        }
     }
 }
