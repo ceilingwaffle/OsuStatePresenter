@@ -10,7 +10,7 @@ namespace OsuStatePresenter
 
         public StatePresenter StatePresenter { get; set; }
 
-        public OsuPresenter(Action<State> stateCreatedHandler)
+        public OsuPresenter(Action<State> stateCreatedHandler = null)
         {
             _SetupStatePresenter(stateCreatedHandler);
             _SetupDefaultOsuNodes();
@@ -19,7 +19,11 @@ namespace OsuStatePresenter
         private void _SetupStatePresenter(Action<State> stateCreatedHandler)
         {
             StatePresenter = new StatePresenter();
-            StatePresenter.AddEventHandler_NewStateCreated(stateCreatedHandler);
+
+            if (stateCreatedHandler != null)
+            {
+                StatePresenter.AddEventHandler_NewStateCreated(stateCreatedHandler);
+            }
         }
 
         public bool TryGetNode(Type type, out Node node)
