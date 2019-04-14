@@ -21,7 +21,7 @@ namespace OsuStatePresenter.Nodes
             var mods = (string)modsNode?.GetValue() ?? "";
             var beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
 
-            float bpm = CalculateBpm(mapTime, beatmap);
+            float bpm = CalculateBpm(mapTime, beatmap, mods);
 
             // unknown bpm
             if (bpm <= 0)
@@ -30,7 +30,7 @@ namespace OsuStatePresenter.Nodes
             return await Task.FromResult(bpm);
         }
 
-        private float CalculateBpm(int mapTime, BMAPI.v1.Beatmap beatmap)
+        private float CalculateBpm(int mapTime, BMAPI.v1.Beatmap beatmap, string mods)
         {
             // TODO: OPTIMIZE - Probably a faster way of doing this instead of Reverse()? e.g. using a temp variable for the previous tp.
             // https://osu.ppy.sh/help/wiki/osu!_File_Formats/Osu_(file_format)#timing-points
@@ -54,6 +54,12 @@ namespace OsuStatePresenter.Nodes
                     break;
                 }
             }
+
+            // TODO: UNFINISHED - More accurate check for DT/HT - something other than substring search
+            if (mods.Contains("DoubleTime"))
+                bpm *= 1.5f;
+            else if (mods.Contains("HalfTime"))
+                bpm *= 0.75f;
 
             return bpm;
         }
