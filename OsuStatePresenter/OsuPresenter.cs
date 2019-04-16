@@ -28,7 +28,7 @@ namespace OsuStatePresenter
 
         public bool TryGetNode(Type type, out Node node)
         {
-            return StatePresenter.NodeSupervisor.TryGetNode(type, out node);
+            return StatePresenter.NodeSupervisor.TryGetInitializedNode(type, out node);
         }
 
         private void _SetupDefaultOsuNodes()
