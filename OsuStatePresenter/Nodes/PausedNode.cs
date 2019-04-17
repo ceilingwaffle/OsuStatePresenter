@@ -59,7 +59,7 @@ namespace OsuStatePresenter.Nodes
 
         private TimeSpan _DeterminePausedStatusUpdateWaitTime()
         {
-            double scanTime = StatePresenter.ScannerInterval.Add(TimeSpan.FromMilliseconds(250)).TotalMilliseconds;
+            double scanTime = StatePresenter.NodeScannerInterval.Add(TimeSpan.FromMilliseconds(250)).TotalMilliseconds;
             double minTime = _defaultMinUpdateTime.TotalMilliseconds;
 
             double chosenTime = Math.Max(scanTime, minTime);
