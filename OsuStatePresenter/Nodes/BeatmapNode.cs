@@ -26,6 +26,7 @@ namespace OsuStatePresenter.Nodes
                 fullMapFilePath = BuildFullMapFilePath();
                 if (!File.Exists(fullMapFilePath))
                 {
+                    // TODO: Log only once per fullMapFilePath
                     _logger.Warn($"Beatmap file not found: {fullMapFilePath}");
                     return null;
                 }
