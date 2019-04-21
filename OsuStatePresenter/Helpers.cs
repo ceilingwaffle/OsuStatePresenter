@@ -39,6 +39,26 @@ namespace OsuStatePresenter
 
         internal static string GetProcessDirectory(string processName)
         {
+            // TODO: Fix: https://stackoverflow.com/a/5497123 - "There is one catch with this API, if you are running this code in 32 bit application, you'll not be able to access 64-bit application paths, so you'd have to compile and run you app as 64-bit application (Project Properties → Build → Platform Target → x64)."
+
+            var processes = Process.GetProcesses();
+
+            foreach (var process in processes)
+            {
+                if (process.ProcessName.Equals(processName))
+                {
+                    string fullPath = process.MainModule.FileName;
+
+                    return Path.GetDirectoryName(fullPath) + "\\";
+                }
+            }
+
+            return string.Empty;
+
+        }
+
+        internal static string GetProcessDirectoryFor32And64BitPrograms(string processName)
+        {
             // TODO: OPTIMIZE - shouldn't need to iterate over every process.
 
             var wmiQueryString = "SELECT ProcessId, ExecutablePath, CommandLine FROM Win32_Process";
