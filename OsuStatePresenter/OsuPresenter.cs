@@ -65,7 +65,7 @@ namespace OsuStatePresenter
             modsNode.Precedes(bpmNode);
 
             // attach to level 2 nodes
-            beatmapNode.Precedes(bpmNode);
+            beatmapNode.Precedes(bpmNode, pausedNode);
             mapBreakNode.Follows(beatmapNode, mapTimeNode);
             ppNowNode.Follows(statusNode, modsNode, beatmapNode, mapTimeNode);
         }

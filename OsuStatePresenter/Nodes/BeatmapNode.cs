@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using DVPF.Core;
-using System;
 using System.IO;
 
 namespace OsuStatePresenter.Nodes
@@ -60,6 +59,16 @@ namespace OsuStatePresenter.Nodes
         {
             // TODO: REFACTOR - Build decorated custom-beatmap class object (to reduce external class coupling to BMAPI).
             return new BMAPI.v1.Beatmap(fullMapFilePath);
+        }
+
+        public float GetTimeOfFirstHitObject(BMAPI.v1.Beatmap beatmap)
+        {
+            foreach (var hitObject in beatmap.HitObjects)
+            {
+                return hitObject.StartTime;
+            }
+
+            return float.MaxValue;
         }
     }
 }

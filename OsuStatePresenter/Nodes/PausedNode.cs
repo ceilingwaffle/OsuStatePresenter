@@ -70,16 +70,40 @@ namespace OsuStatePresenter.Nodes
         private bool _GetPausedStatusFromMemory()
         {
             Preceders.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
-            //Preceders.TryGetValue(typeof(StatusNode), out var statusNode);
+            Preceders.TryGetValue(typeof(BeatmapNode), out var beatmapNode);
 
             var currentMapTime = (int?)mapTimeNode?.GetValue() ?? 0;
             var previousMapTime = (int?)mapTimeNode?.GetPreviousValue() ?? 0;
-            //var status = (string)statusNode?.GetValue();
 
-            _logger.Info($"{previousMapTime} -> {currentMapTime}");
+            //_logger.Info($"{previousMapTime} -> {currentMapTime}");
 
-            //if (status.Contains("Playing") && currentMapTime.Equals(previousMapTime))
-            if (currentMapTime.Equals(previousMapTime))
+            // To avoid flickering between "paused" and "not paused" at the beginning of every map, 
+            // we check the current map time against the time of the first beatmap hit object
+            BMAPI.v1.Beatmap beatmap = null;
+
+            try
+            {
+                beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
+            }
+            catch (InvalidCastException e)
+            {
+                _logger.Warn($"Error casting beatmap object in PausedNode. The exception message is: {e.Message}");
+
+                // just fall back to the older buggy "flicker paused/not paused" status when the map time is near the start of the map.
+                if (currentMapTime.Equals(previousMapTime))
+                {
+                    return true;
+                }
+            }
+
+            float timeOfFirstHitObject = float.MaxValue;
+
+            if (beatmap != null)
+            {
+                timeOfFirstHitObject = ((BeatmapNode)beatmapNode).GetTimeOfFirstHitObject(beatmap);
+            }
+
+            if (currentMapTime.Equals(previousMapTime) && currentMapTime > timeOfFirstHitObject)
             {
                 return true;
             }
