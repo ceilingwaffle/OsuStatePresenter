@@ -27,6 +27,8 @@ namespace OsuStatePresenter.Nodes
 
         public override async Task<object> DetermineValueAsync()
         {
+            //return await Task.FromResult(_memoryReader.ReadPlayTime());
+
             // The timer will "simulate" the current time until the _minTime time is reached. 
             // (e.g. estimate until 1 second is reached, then use the time read from the memory reader).
             //
@@ -35,6 +37,8 @@ namespace OsuStatePresenter.Nodes
             //
             // This comes at the cost of the "current time" sometimes not being accurate, if the user has toggled pause/unpause,
             // within a maximum time of the _minTime value (e.g. 1 second). It will always be accurate after _minTime ms.
+
+            // TODO: Idea to prevent inaccurate time being returned for up to t=_minTime - listen for status changed to "playing", if old status != playing and new status == playing, read map time from memory
 
             if (!_timer.IsRunning)
             {
@@ -46,10 +50,10 @@ namespace OsuStatePresenter.Nodes
                 }
             }
 
-            int mapTime = _lastTimeRead;
+            //int mapTime = _lastTimeRead;
 
             // TODO: BUG - System.IndexOutOfRangeException not being caught from OsuMemory DLL (occurs when game not running)
-            mapTime = _memoryReader.ReadPlayTime();
+            int mapTime = _memoryReader.ReadPlayTime();
 
             if (_timer.Elapsed.CompareTo(_minTime) > 0) // timer time greater than min time
             {

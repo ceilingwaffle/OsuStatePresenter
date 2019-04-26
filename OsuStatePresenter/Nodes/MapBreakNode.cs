@@ -20,7 +20,7 @@ namespace OsuStatePresenter.Nodes
             if (beatmapNode is null)
                 return null;
 
-            var mapTime = (int?)mapTimeNode?.GetValue() ?? -1;
+            var mapTime = (int?)mapTimeNode?.GetValue() ?? -1; 
             var beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
 
             if (beatmap is null)

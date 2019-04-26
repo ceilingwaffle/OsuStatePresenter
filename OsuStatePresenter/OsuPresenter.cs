@@ -55,17 +55,18 @@ namespace OsuStatePresenter
             var mapBreakNode = new MapBreakNode();
             var bpmNode = new BpmNode();
             var ppNowNode = new PPNode();
+            var mapStartNode = new MapStartNode();
 
             // attach to level 0 nodes
             mapIdNode.Precedes(beatmapNode, mapTimeNode, modsNode);
-            mapTimeNode.Precedes(bpmNode, pausedNode);
+            mapTimeNode.Precedes(bpmNode, pausedNode); //, mapStartNode
             statusNode.Precedes(modsNode);
 
             // attach to level 1 nodes
             modsNode.Precedes(bpmNode);
 
             // attach to level 2 nodes
-            beatmapNode.Precedes(bpmNode, pausedNode);
+            beatmapNode.Precedes(bpmNode, pausedNode, mapStartNode);
             mapBreakNode.Follows(beatmapNode, mapTimeNode);
             ppNowNode.Follows(statusNode, modsNode, beatmapNode, mapTimeNode);
         }
