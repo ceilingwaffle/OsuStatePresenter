@@ -1,24 +1,32 @@
-﻿using DVPF.Core;
-using OsuStatePresenter;
-using OsuStatePresenter.Nodes;
-using System;
-
-namespace ConsoleOsuImplementation
+﻿namespace ConsoleOsuImplementation
 {
-    class Program
+    using System;
+
+    using DVPF.Core;
+
+    using OsuStatePresenter;
+    using OsuStatePresenter.Nodes;
+
+    /// <summary>
+    /// The console program.
+    /// </summary>
+    public class Program
     {
-        private static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private static long _lastTime = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+        private static long lastTime = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
 
-        static void Main(string[] args)
+        /// <summary>
+        /// The main console method.
+        /// </summary>
+        public static void Main()
         {
-            OsuPresenter presenter = new OsuPresenter(StateCreatedHandler);
+            var presenter = new OsuPresenter(StateCreatedHandler);
 
             // handle value changed on a specific node
-            if (presenter.TryGetNode(typeof(BpmNode), out var bpmNode))
+            if (presenter.TryGetNode(typeof(BpmNode), out Node bpmNode))
             {
-                bpmNode.OnValueChange += (sender, e) => Console.WriteLine($"BPM: {bpmNode.GetValue()}");
+                bpmNode.OnValueChange += (sender, e) => Console.WriteLine($@"BPM: {bpmNode.GetValue()}");
             }
 
             // start the Presenter
@@ -28,19 +36,22 @@ namespace ConsoleOsuImplementation
             while (true)
             {
                 Console.ReadKey();
-                Console.WriteLine("Key pressed. Stopping Presenter...");
+                Console.WriteLine(@"Key pressed. Stopping Presenter...");
                 presenter.Stop();
             }
+
+            // ReSharper disable once FunctionNeverReturns
         }
 
-        static void StateCreatedHandler(State state)
+        private static void StateCreatedHandler(State state)
         {
-            var now = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
-            _logger.Info("ΔT = {0} ms", (now - _lastTime));
-            _lastTime = now;
+            long now = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+            Logger.Info("ΔT = {0} ms", now - lastTime);
+            lastTime = now;
 
+            // ReSharper disable once LocalizableElement
             Console.WriteLine("State created:\n{0}", state);
-            _logger.Info("State created:\n{0}", state);
+            Logger.Info("State created:\n{0}", state);
         }
     }
 }

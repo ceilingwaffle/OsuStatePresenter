@@ -6,7 +6,7 @@
     <AssemblyTitle>Program</AssemblyTitle>
     <Product>Program</Product>
     <Copyright>Copyright ©  2019</Copyright>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.IO.Compression" Version="4.*" />
@@ -16,7 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +27,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj" />
     <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj" />
     <ProjectReference Include="..\OsuStatePresenter\OsuStatePresenter.csproj" />
   </ItemGroup>

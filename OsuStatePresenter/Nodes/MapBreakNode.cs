@@ -1,53 +1,64 @@
-﻿using BMAPI.v1;
-using DVPF.Core;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace OsuStatePresenter.Nodes
+﻿namespace OsuStatePresenter.Nodes
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using BMAPI.v1.Events;
+
+    using DVPF.Core;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// The node representing whether the current time of the beatmap is in a map break (the grey area in the map editor).
+    /// </summary>
     [StateProperty(enabled: true, name: "IsMapBreak")]
     public class MapBreakNode : OsuNode
     {
-        private int? _cachedMapId = null;
-        private List<BMAPI.v1.Events.EventBase> _cachedBeatmapEvents = new List<BMAPI.v1.Events.EventBase>();
+        private int? cachedMapId;
+        private List<EventBase> cachedBeatmapEvents = new List<EventBase>();
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns a boolean wrapped in an object for whether or not the map is currently in a break.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="T:System.Threading.Tasks.Task" />.
+        /// </returns>
         public override async Task<object> DetermineValueAsync()
         {
-            Preceders.TryGetValue(typeof(MapTimeNode), out var mapTimeNode);
-            Preceders.TryGetValue(typeof(BeatmapNode), out var beatmapNode);
+            this.Preceders.TryGetValue(typeof(MapTimeNode), out Node mapTimeNode);
+            this.Preceders.TryGetValue(typeof(BeatmapNode), out Node beatmapNode);
 
             if (beatmapNode is null)
+            {
                 return null;
+            }
 
-            var mapTime = (int?)mapTimeNode?.GetValue() ?? -1; 
+            int mapTime = (int?)mapTimeNode?.GetValue() ?? -1; 
             var beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
 
             if (beatmap is null)
+            {
                 return null;
+            }
 
             // only update the cache (and reverse the events) if the beatmap changed
-            if (!beatmap.BeatmapID.Equals(_cachedMapId))
-                UpdateMapCache(beatmap.BeatmapID, beatmap.Events);
+            if (!beatmap.BeatmapID.Equals(this.cachedMapId))
+            {
+                this.UpdateMapCache(beatmap.BeatmapID, beatmap.Events);
+            }
 
-            bool isMapBreak = IsMapBreak(mapTime, _cachedBeatmapEvents);
+            bool isMapBreak = IsMapBreak(mapTime, this.cachedBeatmapEvents);
 
             return await Task.FromResult(isMapBreak);
         }
 
-        private void UpdateMapCache(int? mapId, List<BMAPI.v1.Events.EventBase> beatmapEvents)
+        private static bool IsMapBreak(int mapTime, IEnumerable<EventBase> beatmapEvents)
         {
-            _cachedMapId = mapId;
-            _cachedBeatmapEvents = beatmapEvents;
-            _cachedBeatmapEvents.Reverse();
-        }
-
-        private bool IsMapBreak(int mapTime, List<BMAPI.v1.Events.EventBase> beatmapEvents)
-        {
-            foreach (var ev in beatmapEvents)
+            foreach (EventBase ev in beatmapEvents)
             {
-                if (ev is BMAPI.v1.Events.BreakEvent breakEvent
-                    && mapTime >= breakEvent.StartTime
+                if (ev is BreakEvent breakEvent 
+                    && mapTime >= breakEvent.StartTime 
                     && mapTime <= breakEvent.EndTime)
                 {
                     return true;
@@ -55,6 +66,13 @@ namespace OsuStatePresenter.Nodes
             }
 
             return false;
+        }
+
+        private void UpdateMapCache(int? mapId, List<EventBase> beatmapEvents)
+        {
+            this.cachedMapId = mapId;
+            this.cachedBeatmapEvents = beatmapEvents;
+            this.cachedBeatmapEvents.Reverse();
         }
     }
 }

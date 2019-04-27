@@ -1,28 +1,39 @@
-﻿using DVPF.Core;
-using OsuMemoryDataProvider;
-using System.Threading;
-using System.Reflection;
-using System;
-
-namespace OsuStatePresenter.Nodes
+﻿namespace OsuStatePresenter.Nodes
 {
-    abstract public class OsuNode : Node
-    {
-        protected static readonly NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
-        protected IOsuMemoryReader _memoryReader;
-        //protected IOsuMemoryReader _memoryReader2;
+    using DVPF.Core;
 
-        public OsuNode()
+    using OsuMemoryDataProvider;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// The node to be derived from to create a specific node representing an osu! value.
+    /// </summary>
+    public abstract class OsuNode : Node
+    {
+        /// <summary>
+        /// The logger.
+        /// </summary>
+        protected static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:OsuStatePresenter.Nodes.OsuNode" /> class.
+        /// </summary>
+        protected OsuNode()
         {
             // using dll
-            //OsuMemoryDataProvider.DataProvider.Initalize();
-            //_memoryReader = OsuMemoryDataProvider.DataProvider.Instance;
+            // ReSharper disable once CommentTypo
+            // OsuMemoryDataProvider.DataProvider.Initalize();
+            // _memoryReader = OsuMemoryDataProvider.DataProvider.Instance;
 
             // using project reference
-            //_memoryReader = new OsuMemoryReader(); // multi-instance
-            _memoryReader = OsuMemoryReader.Instance; // shared instance
+            // _memoryReader = new OsuMemoryReader(); // multi-instance
+            this.MemoryReader = OsuMemoryReader.Instance; // shared instance
         }
 
+        /// <summary>
+        /// Gets the osu! memory reader.
+        /// </summary>
+        public IOsuMemoryReader MemoryReader { get; }
     }
-
 }

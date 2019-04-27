@@ -1,38 +1,47 @@
-﻿using System;
-using System.CodeDom;
-using System.Threading.Tasks;
-using DVPF.Core;
-using OsuStatePresenter;
-
-namespace OsuStatePresenter.Nodes
+﻿namespace OsuStatePresenter.Nodes
 {
+    using System.Threading.Tasks;
+
+    using DVPF.Core;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// The node representing the osu! mods of the current beatmap.
+    /// </summary>
     [StateProperty(enabled: true, name: "Mods", strictValue: true)]
     public class ModsNode : OsuNode
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// Returns a value representing the osu! mods wrapped in an object.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="T:System.Threading.Tasks.Task" />.
+        /// </returns>
         public override async Task<object> DetermineValueAsync()
         {
-            Preceders.TryGetValue(typeof(StatusNode), out var statusNode);
+            this.Preceders.TryGetValue(typeof(StatusNode), out Node statusNode);
 
             if (statusNode is null)
             {
                 // always read mods if we don't have a Status node defined (not recommended; slow)
-                return await Task.FromResult(ReadMods());
+                return await Task.FromResult(this.ReadMods());
             }
 
-            var statusNow = statusNode.GetValue();
-            var statusBefore = statusNode.GetPreviousValue();
+            object statusNow = statusNode.GetValue();
+            object statusBefore = statusNode.GetPreviousValue();
 
-            //_logger.Info($"{statusBefore} -> {statusNow}");
+            // _logger.Info($"{statusBefore} -> {statusNow}");
 
             // only read mods if status is "playing" and the previous status was not "playing".
             if (statusNow.Equals("Playing") && !statusNow.Equals(statusBefore))
             {
-                return await Task.FromResult(ReadMods());
+                return await Task.FromResult(this.ReadMods());
             }
             else
             {
                 // use existing mods value stored on this Node
-                var mods = GetValue();
+                object mods = this.GetValue();
 
                 if (mods is null)
                 {
@@ -44,16 +53,13 @@ namespace OsuStatePresenter.Nodes
             }
 
             // TODO: BUG - Win32Exception not being caught from OsuMemory DLL when using osu Cutting Edge version
-
         }
 
         private string ReadMods()
         {
-            _logger.Debug("Calculating mods.........");
-
-            int modsBitwise = _memoryReader.GetMods();
+            Logger.Debug("Calculating mods...");
+            int modsBitwise = this.MemoryReader.GetMods();
             string mods = ((Mods)modsBitwise).ToString();
-
             return mods;
         }
     }
