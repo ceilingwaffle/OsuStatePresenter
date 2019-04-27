@@ -76,8 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj" />
-    <ProjectReference Include="..\submodules\Piotrekol\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj" />
-    <ProjectReference Include="..\submodules\Piotrekol\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
+    <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj" />
+    <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
