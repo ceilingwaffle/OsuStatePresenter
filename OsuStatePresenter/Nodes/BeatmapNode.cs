@@ -14,6 +14,9 @@
     {
         private string osuSongsFolderPath = BuildOsuSongsFolderPath(Helpers.GetProcessDirectory("osu!"));
 
+        private string previousBeatmapFilePath = string.Empty;
+        private BMAPI.v1.Beatmap cachedBeatmap = null;
+
         /// <inheritdoc />
         /// <summary>
         /// Returns the Beatmap wrapped in an object.
@@ -23,17 +26,15 @@
         /// </returns>
         public override async Task<object> DetermineValueAsync()
         {
-            this.Preceders.TryGetValue(typeof(MapIdNode), out Node mapIdNode);
+            //this.Preceders.TryGetValue(typeof(MapIdNode), out Node mapIdNode);
+            //if (mapIdNode is null) return null;
 
-            if (mapIdNode is null)
-            {
-                return null;
-            }
-
-            // TODO: OPTIMIZE - Find a better way of caching the value of _osuSongsFolderPath (shouldn't have to re-scan for the osu process path multiple times).
             string fullMapFilePath = this.BuildFullMapFilePath();
+            BMAPI.v1.Beatmap beatmap = this.cachedBeatmap;
+
             if (!File.Exists(fullMapFilePath))
             {
+                // TODO: OPTIMIZE - Find a better way of caching the value of _osuSongsFolderPath (shouldn't have to re-scan for the osu process path multiple times).
                 // try re-scanning the osu process directory (e.g. if a different instance of osu! was opened from another location).
                 this.osuSongsFolderPath = BuildOsuSongsFolderPath(Helpers.GetProcessDirectory("osu!"));
                 fullMapFilePath = this.BuildFullMapFilePath();
@@ -41,11 +42,23 @@
                 {
                     // TODO: Log only once per fullMapFilePath
                     Logger.Warn($"Beatmap file not found: {fullMapFilePath}");
+
+                    cachedBeatmap = null;
+
                     return null;
                 }
             }
 
-            BMAPI.v1.Beatmap beatmap = BuildBeatmapFromFile(fullMapFilePath);
+            if (!fullMapFilePath.Equals(this.previousBeatmapFilePath) || beatmap == null)
+            {
+                beatmap = this.BuildBeatmapFromFile(fullMapFilePath);
+                this.UpdateBeatmapCache(beatmap);
+
+                string msg = $"Updated beatmap file cache in {this.GetType()} ({fullMapFilePath})";
+                Logger.Info(msg);
+            }
+
+            this.previousBeatmapFilePath = fullMapFilePath;
 
             return await Task.FromResult(beatmap);
         }
@@ -77,7 +90,7 @@
             return Path.Combine(osuProcessDirectory, "Songs") + Path.DirectorySeparatorChar.ToString();
         }
 
-        private static BMAPI.v1.Beatmap BuildBeatmapFromFile(string fullMapFilePath)
+        private BMAPI.v1.Beatmap BuildBeatmapFromFile(string fullMapFilePath)
         {
             // TODO: REFACTOR - Build decorated custom-beatmap class object (to reduce external class coupling to BMAPI).
             return new BMAPI.v1.Beatmap(fullMapFilePath);
@@ -89,6 +102,11 @@
             string mapFileName = this.MemoryReader.GetOsuFileName();
             string fullMapFilePath = this.BuildMapPathString(mapFolderName, mapFileName);
             return fullMapFilePath;
+        }
+
+        private void UpdateBeatmapCache(BMAPI.v1.Beatmap beatmap)
+        {
+            this.cachedBeatmap = beatmap;
         }
 
         private string BuildMapPathString(string mapFolderName, string mapFileName)

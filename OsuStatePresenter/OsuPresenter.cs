@@ -96,7 +96,7 @@
             var mapStartNode = new MapStartNode();
 
             // attach to level 0 nodes
-            mapIdNode.Precedes(beatmapNode, mapTimeNode, modsNode);
+            mapIdNode.Precedes(mapTimeNode, modsNode);
             mapTimeNode.Precedes(bpmNode, pausedNode); // , mapStartNode
             statusNode.Precedes(modsNode);
 

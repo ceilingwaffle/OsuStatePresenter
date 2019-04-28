@@ -3,10 +3,8 @@
     using System.Threading.Tasks;
 
     using BMAPI.v1;
-
+    using OppaiWNet.Wrap;
     using DVPF.Core;
-
-    using OsuStatePresenter.Nodes.Dependencies;
 
     /// <inheritdoc />
     /// <summary>
@@ -16,6 +14,10 @@
     // ReSharper disable once InconsistentNaming
     public class PPNode : OsuNode
     {
+        private readonly OsuMemoryDataProvider.PlayContainer playContainer = new OsuMemoryDataProvider.PlayContainer();
+        private Beatmap beatmapCache;
+        private Ezpp ezppCache;
+
         /// <inheritdoc />
         /// <summary>
         /// Returns the current pp wrapped in an object.
@@ -41,6 +43,7 @@
             var beatmap = (Beatmap)beatmapNode?.GetValue();
             if (beatmap is null)
             {
+                this.beatmapCache = null;
                 return null;
             }
 
@@ -70,10 +73,40 @@
                 return null;
             }
 
-            var oppaiCalc = new OppaiExeCalc(beatmap);
-            double ppNow = oppaiCalc.CalculatePP(currentMapTime);
+            // TODO: REFACTOR - create inferface named IPPCalc and extract the oppai stuff to a new class
+            // TODO: OPTIMIZE - get beatmap from memory somehow, and pass the beatmap byte array into the Ezpp constructor.
+            // TODO: BUG - pp always 0 for osu mania
+            Ezpp ezpp = ezppCache;
+            if (ezpp == null || !beatmap.Equals(beatmapCache))
+            {
+                this.beatmapCache = beatmap;
+                Logger.Info($"Updated beatmap file cache in {this.GetType()} ({beatmap.Filename})");
 
-            return await Task.FromResult(ppNow);
+                ezpp = new Ezpp(beatmap.Filename);
+                this.ezppCache = ezpp;
+                Logger.Info($"Updated ezpp cache in {this.GetType()}");
+            }
+
+            //var oppaiCalc = new OppaiExeCalc(beatmap);
+            //double ppNow = oppaiCalc.CalculatePP(currentMapTime);
+
+            MemoryReader.GetPlayData(this.playContainer);
+
+            //var ezpp = new OppaiWNet.Wrap.Ezpp(beatmap.Filename);
+            ezpp.Count100 = this.playContainer.C100;
+            ezpp.Count50 = this.playContainer.C50;
+            ezpp.CountMiss = this.playContainer.CMiss;
+            ezpp.Mode = MemoryReader.ReadPlayedGameMode();
+            ezpp.Mods = (OppaiWNet.Wrap.Mods)MemoryReader.GetMods();
+            ezpp.SetEndTime(currentMapTime);
+            ezpp.ApplyChange();
+
+            var pp = double.Parse(ezpp.PP.ToString());
+
+            //Logger.Debug($"Acc: {ezpp.Acc}");
+            //Logger.Debug($"PP: {pp}");
+
+            return await Task.FromResult(pp);
         }
     }
 }

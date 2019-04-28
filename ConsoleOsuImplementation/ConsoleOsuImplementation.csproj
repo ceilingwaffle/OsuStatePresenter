@@ -10,6 +10,9 @@
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="oppai.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="System.IO.Compression" Version="4.*" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.*" />
     <PackageReference Include="Microsoft.CSharp" Version="4.*" />
@@ -23,9 +26,12 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="NLog.xsd">
+    <Content Include="NLog.xsd">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
+    <Content Include="oppai.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj" />

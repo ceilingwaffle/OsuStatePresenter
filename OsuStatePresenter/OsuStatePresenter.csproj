@@ -60,7 +60,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\oppai\3.2.0\oppai.dll" />
+    <EmbeddedResource Include="Resources\oppai\3.2.0\oppai.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\oppai\3.2.0\oppai.exe" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -69,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj" />
+    <ProjectReference Include="..\submodules\Oppai.w.Net\Oppai.w.Net\Oppai.w.Net.csproj" />
     <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj" />
     <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
   </ItemGroup>

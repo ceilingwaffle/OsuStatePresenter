@@ -46,10 +46,9 @@
 
             // if ((int?)mapTimeNode?.GetValue() == null) return null;
             float mapFirstObjectTime = ((BeatmapNode)beatmapNode).GetTimeOfFirstHitObject(beatmap);
-            System.Diagnostics.Debug.WriteLine($"First object time: {mapFirstObjectTime}");
+            //System.Diagnostics.Debug.WriteLine($"First object time: {mapFirstObjectTime}");
             bool isMapStart = currentMapTime < mapFirstObjectTime;
-
-            Debug.WriteLine($"{currentMapTime} -- {mapFirstObjectTime}");
+            //Debug.WriteLine($"{currentMapTime} -- {mapFirstObjectTime}");
 
             return await Task.FromResult(isMapStart);
         }
