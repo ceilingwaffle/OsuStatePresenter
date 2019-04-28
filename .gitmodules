@@ -1,6 +1,3 @@
-[submodule "submodules/Piotrekol/ProcessMemoryDataFinder"]
-	path = submodules/Piotrekol/ProcessMemoryDataFinder
-	url = https://github.com/Piotrekol/ProcessMemoryDataFinder.git
 [submodule "submodules/DependentValuePresentationFramework"]
 	path = submodules/DependentValuePresentationFramework
 	url = git@github.com:ceilingwaffle/DependentValuePresentationFramework.git
