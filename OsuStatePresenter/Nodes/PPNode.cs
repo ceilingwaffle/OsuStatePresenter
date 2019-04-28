@@ -70,7 +70,7 @@
                 return null;
             }
 
-            var oppaiCalc = new OppaiCalc(beatmap);
+            var oppaiCalc = new OppaiExeCalc(beatmap);
             double ppNow = oppaiCalc.CalculatePP(currentMapTime);
 
             return await Task.FromResult(ppNow);

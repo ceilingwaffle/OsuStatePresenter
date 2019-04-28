@@ -12,14 +12,14 @@
     using Newtonsoft.Json;
 
     // ReSharper disable InconsistentNaming
-    internal class OppaiCalc
+    internal class OppaiExeCalc
     {
         protected static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static bool oppaiFilesCopies;
         private readonly Beatmap beatmap;
         private readonly TimeSpan endDelayTime = TimeSpan.FromMilliseconds(value: 5000);
 
-        public OppaiCalc(Beatmap beatmap)
+        public OppaiExeCalc(Beatmap beatmap)
         {
             this.beatmap = beatmap;
         }
