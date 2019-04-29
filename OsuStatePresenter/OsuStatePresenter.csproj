@@ -82,7 +82,7 @@
     </PackageReference>
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="msbuild &quot;$(SolutionDir)submodules\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj&quot;&#xD;&#xA;" />
+    <Exec Command="msbuild &quot;$(SolutionDir)submodules\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj&quot; /t:restore&#xD;&#xA;" />
   </Target>
 
 </Project>
