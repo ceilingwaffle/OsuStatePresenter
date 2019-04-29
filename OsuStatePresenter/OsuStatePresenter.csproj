@@ -70,10 +70,10 @@
     <EmbeddedResource Include="Resources\oppai\3.2.0\oppai.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\submodules\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj" />
-    <ProjectReference Include="..\submodules\Oppai.w.Net\Oppai.w.Net\Oppai.w.Net.csproj" />
-    <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj" />
-    <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
+    <ProjectReference Include="$(SolutionDir)submodules\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj" />
+    <ProjectReference Include="$(SolutionDir)submodules\Oppai.w.Net\Oppai.w.Net\Oppai.w.Net.csproj" />
+    <ProjectReference Include="$(SolutionDir)submodules\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj" />
+    <ProjectReference Include="$(SolutionDir)submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
@@ -82,7 +82,7 @@
     </PackageReference>
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="msbuild &quot;$(SolutionDir)submodules\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj&quot; /t:restore&#xD;&#xA;" />
+    <Exec Command="&quot;$(DevEnvDir)..\..\MSBuild\Current\Bin\msbuild.exe&quot; &quot;$(SolutionDir)submodules\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj&quot; /t:restore&#xD;&#xA;" />
   </Target>
 
 </Project>
