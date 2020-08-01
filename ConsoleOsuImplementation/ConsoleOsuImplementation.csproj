@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-	<TargetFramework>netcoreapp2.2</TargetFramework>
+	<TargetFramework>netcoreapp3.1</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>Program</AssemblyTitle>
     <Product>Program</Product>
@@ -19,6 +19,9 @@
     <PackageReference Include="System.Net.Http" Version="4.*" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ProcessMemoryDataFinder">
+      <HintPath>..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\bin\Debug\netcoreapp3.1\ProcessMemoryDataFinder.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
@@ -34,8 +37,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj" />
-    <ProjectReference Include="..\..\dvpf\DVPF.Core\DVPF.Core.csproj" />
+    <ProjectReference Include="..\..\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj" />
     <ProjectReference Include="..\OsuStatePresenter\OsuStatePresenter.csproj" />
   </ItemGroup>
   <ItemGroup>
