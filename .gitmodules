@@ -10,3 +10,4 @@
 [submodule "submodules/osu-BMAPI"]
 	path = submodules/osu-BMAPI
 	url = https://github.com/smoogipoo/osu-BMAPI.git
+	ignore = dirty
