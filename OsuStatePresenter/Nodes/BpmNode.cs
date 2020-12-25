@@ -86,6 +86,8 @@
                 bpm *= 0.75f;
             }
 
+            timingPoints.Reverse();
+
             return bpm;
         }
     }

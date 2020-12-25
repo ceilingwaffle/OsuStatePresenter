@@ -7,3 +7,6 @@
 [submodule "submodules/Oppai.w.Net"]
 	path = submodules/Oppai.w.Net
 	url = git@github.com:MikiraSora/Oppai.w.Net.git
+[submodule "submodules/osu-BMAPI"]
+	path = submodules/osu-BMAPI
+	url = https://github.com/smoogipoo/osu-BMAPI.git

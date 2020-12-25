@@ -19,9 +19,6 @@
     <PackageReference Include="System.Net.Http" Version="4.*" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ProcessMemoryDataFinder">
-      <HintPath>..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\bin\Debug\netcoreapp3.1\ProcessMemoryDataFinder.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
@@ -39,6 +36,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj" />
     <ProjectReference Include="..\OsuStatePresenter\OsuStatePresenter.csproj" />
+    <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.6.1" />

@@ -47,9 +47,6 @@
     <PackageReference Include="System.Net.Http" Version="4.*" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="osu!BMAPI">
-      <HintPath>.\osu!BMAPI.dll</HintPath>
-    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
@@ -73,6 +70,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj" />
     <ProjectReference Include="..\..\submodules\Oppai.w.Net\Oppai.w.Net\Oppai.w.Net.csproj" />
+    <ProjectReference Include="..\submodules\osu-BMAPI\osu!BMAPI.csproj" />
     <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj" />
     <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
   </ItemGroup>
