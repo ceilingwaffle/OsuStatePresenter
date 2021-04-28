@@ -6,10 +6,9 @@
     using System.IO;
     using System.Linq;
 
-    using BMAPI.v1;
-    using BMAPI.v1.HitObjects;
-
     using Newtonsoft.Json;
+    using OsuParsers.Beatmaps;
+    using OsuParsers.Beatmaps.Objects;
 
     // ReSharper disable InconsistentNaming
     internal class OppaiExeCalc
@@ -17,11 +16,13 @@
         protected static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static bool oppaiFilesCopies;
         private readonly Beatmap beatmap;
+        private readonly string beatmapFilePath;
         private readonly TimeSpan endDelayTime = TimeSpan.FromMilliseconds(value: 5000);
 
-        public OppaiExeCalc(Beatmap beatmap)
+        public OppaiExeCalc(Beatmap beatmap, string beatmapFilePath)
         {
             this.beatmap = beatmap;
+            this.beatmapFilePath = beatmapFilePath;
         }
 
         public double CalculatePP(int time = -1)
@@ -41,7 +42,7 @@
                     {
                         UseShellExecute = false,
                         FileName = $"{Helpers.CurrentExeDirectory()}\\oppai.exe",
-                        Arguments = $"\"{this.beatmap.Filename}\" -ojson -end{currentObjectNumber}",
+                        Arguments = $"\"{this.beatmapFilePath}\" -ojson -end{currentObjectNumber}",
                         CreateNoWindow = true,
                         RedirectStandardError = false,
                         RedirectStandardOutput = true,
@@ -91,7 +92,7 @@
         // ReSharper disable once SuggestBaseTypeForParameter
         private int GetCurrentObjectNumber(Beatmap targetBeatmap, int currentMapTime)
         {
-            var hitObjects = new List<CircleObject>(targetBeatmap.HitObjects);
+            var hitObjects = new List<HitObject>(targetBeatmap.HitObjects);
 
             if (hitObjects.Count < 1)
             {
@@ -114,7 +115,7 @@
 
             for (var i = 0; i < hitObjects.Count; i++)
             {
-                CircleObject ho = hitObjects[i];
+                var ho = hitObjects[i];
 
                 if (currentMapTime >= ho.StartTime)
                 {

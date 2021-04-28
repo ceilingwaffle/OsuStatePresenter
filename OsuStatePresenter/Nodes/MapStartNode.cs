@@ -4,9 +4,10 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
-    using BMAPI.v1;
-
     using DVPF.Core;
+
+    using OsuParsers.Beatmaps;
+    using OsuParsers.Decoders;
 
     /// <inheritdoc />
     /// <summary>
@@ -30,7 +31,7 @@
             this.Preceders.TryGetValue(typeof(BeatmapNode), out Node beatmapNode);
 
             // TODO: OPTIMIZE - cache the beatmap instead of loading it every time. only load when map ID changes (SEE MapBreakNode - extract out the caching stuff into a BeatmapCacher class).
-            var beatmap = (BMAPI.v1.Beatmap)beatmapNode?.GetValue();
+            var beatmap = (Beatmap)beatmapNode?.GetValue();
 
             if (beatmap == null)
             {

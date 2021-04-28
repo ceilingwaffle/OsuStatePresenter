@@ -1,8 +1,11 @@
 ﻿namespace OsuStatePresenter.Nodes
 {
+    using System;
     using System.Threading.Tasks;
 
     using DVPF.Core;
+    using OsuParsers.Beatmaps;
+    using OsuParsers.Beatmaps.Objects;
 
     /// <inheritdoc />
     /// <summary>
@@ -31,7 +34,7 @@
 
             int mapTime = (int?)mapTimeNode?.GetValue() ?? -1;
             string mods = (string)modsNode?.GetValue() ?? string.Empty;
-            var beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
+            var beatmap = (Beatmap)beatmapNode.GetValue();
 
             float bpm = CalculateBpm(mapTime, beatmap, mods);
 
@@ -51,7 +54,7 @@
         }
 
         // ReSharper disable once SuggestBaseTypeForParameter
-        private static float CalculateBpm(int mapTime, BMAPI.v1.Beatmap beatmap, string mods)
+        private static float CalculateBpm(int mapTime, Beatmap beatmap, string mods)
         {
             // TODO: OPTIMIZE - Probably a faster way of doing this instead of Reverse()? e.g. using a temp variable for the previous tp.
             // https://osu.ppy.sh/help/wiki/osu!_File_Formats/Osu_(file_format)#timing-points
@@ -65,14 +68,15 @@
             var timingPoints = beatmap.TimingPoints;
             timingPoints.Reverse();
 
-            foreach (BMAPI.v1.TimingPoint tp in timingPoints)
+            foreach (TimingPoint tp in timingPoints)
             {
-                if (tp?.InheritsBPM != false || !(mapTime >= tp.Time))
+                if (tp?.Inherited == false || !(mapTime >= tp.Offset))
                 {
                     continue;
                 }
 
-                bpm = ConvertDelayToBpm(tp.BpmDelay);
+                // https://osu.ppy.sh/wiki/sk/osu!_File_Formats/Osu_(file_format)#timing-points
+                bpm = ConvertDelayToBpm(Convert.ToSingle(tp.BeatLength));
                 break;
             }
 

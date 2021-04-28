@@ -5,6 +5,9 @@
 
     using DVPF.Core;
 
+    using OsuParsers.Beatmaps;
+    using OsuParsers.Decoders;
+
     // TODO: REFACTOR - Build the "paused" status into the custom Status class
 
     /// <inheritdoc />
@@ -100,11 +103,11 @@
 
             // To avoid flickering between "paused" and "not paused" at the beginning of every map, 
             // we check the current map time against the time of the first beatmap hit object
-            BMAPI.v1.Beatmap beatmap = null;
+            Beatmap beatmap = null;
 
             try
             {
-                beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
+                beatmap = (Beatmap)beatmapNode.GetValue();
             }
             catch (InvalidCastException e)
             {

@@ -5,6 +5,9 @@
 
     using DVPF.Core;
 
+    using OsuParsers.Beatmaps;
+    using OsuParsers.Decoders;
+
     /// <inheritdoc />
     /// <summary>
     /// The node representing the osu! beatmap.
@@ -15,7 +18,7 @@
         private string osuSongsFolderPath = BuildOsuSongsFolderPath(Helpers.GetProcessDirectory("osu!"));
 
         private string previousBeatmapFilePath = string.Empty;
-        private BMAPI.v1.Beatmap cachedBeatmap = null;
+        private Beatmap cachedBeatmap = null;
 
         /// <inheritdoc />
         /// <summary>
@@ -30,7 +33,7 @@
             //if (mapIdNode is null) return null;
 
             string fullMapFilePath = this.BuildFullMapFilePath();
-            BMAPI.v1.Beatmap beatmap = this.cachedBeatmap;
+            Beatmap beatmap = this.cachedBeatmap;
 
             if (!File.Exists(fullMapFilePath))
             {
@@ -72,7 +75,7 @@
         /// <returns>
         /// The map time as a <see cref="float"/>, float.MaxValue if the beatmap contains no hit objects or if the beatmap was null.
         /// </returns>
-        public float GetTimeOfFirstHitObject(BMAPI.v1.Beatmap beatmap)
+        public float GetTimeOfFirstHitObject(Beatmap beatmap)
         {
             if (beatmap?.HitObjects == null)
             {
@@ -90,10 +93,10 @@
             return Path.Combine(osuProcessDirectory, "Songs") + Path.DirectorySeparatorChar.ToString();
         }
 
-        private BMAPI.v1.Beatmap BuildBeatmapFromFile(string fullMapFilePath)
+        private Beatmap BuildBeatmapFromFile(string fullMapFilePath)
         {
             // TODO: REFACTOR - Build decorated custom-beatmap class object (to reduce external class coupling to BMAPI).
-            return new BMAPI.v1.Beatmap(fullMapFilePath);
+            return BeatmapDecoder.Decode(fullMapFilePath);
         }
 
         private string BuildFullMapFilePath()
@@ -104,7 +107,7 @@
             return fullMapFilePath;
         }
 
-        private void UpdateBeatmapCache(BMAPI.v1.Beatmap beatmap)
+        private void UpdateBeatmapCache(Beatmap beatmap)
         {
             this.cachedBeatmap = beatmap;
         }

@@ -2,9 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using BMAPI.v1;
     using OppaiWNet.Wrap;
     using DVPF.Core;
+    using OsuParsers.Beatmaps;
 
     /// <inheritdoc />
     /// <summary>
@@ -17,6 +17,7 @@
         private readonly OsuMemoryDataProvider.PlayContainer playContainer = new OsuMemoryDataProvider.PlayContainer();
         private Beatmap beatmapCache;
         private Ezpp ezppCache;
+        private string beatmapFileName = string.Empty; // TODO: Not yet implemented
 
         /// <inheritdoc />
         /// <summary>
@@ -61,7 +62,8 @@
                 return null;
             }
 
-            string osuFileLocation = ((Beatmap)beatmapNode.GetValue())?.Filename ?? string.Empty;
+            //string osuFileLocation = ((Beatmap)beatmapNode.GetValue())?.Filename ?? string.Empty;
+            string osuFileLocation = this.beatmapFileName ?? string.Empty;
             if (osuFileLocation.Equals(string.Empty))
             {
                 return null;
@@ -80,9 +82,9 @@
             if (ezpp == null || !beatmap.Equals(beatmapCache))
             {
                 this.beatmapCache = beatmap;
-                Logger.Info($"Updated beatmap file cache in {this.GetType()} ({beatmap.Filename})");
+                Logger.Info($"Updated beatmap file cache in {this.GetType()} ({this.beatmapFileName})"); // beatmap.Filename
 
-                ezpp = new Ezpp(beatmap.Filename);
+                ezpp = new Ezpp(this.beatmapFileName); // beatmap.Filename
                 this.ezppCache = ezpp;
                 Logger.Info($"Updated ezpp cache in {this.GetType()}");
             }

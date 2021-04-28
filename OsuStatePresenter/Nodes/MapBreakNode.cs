@@ -6,6 +6,8 @@
     using BMAPI.v1.Events;
 
     using DVPF.Core;
+    using OsuParsers.Beatmaps;
+    using OsuParsers.Beatmaps.Sections;
 
     /// <inheritdoc />
     /// <summary>
@@ -15,7 +17,7 @@
     public class MapBreakNode : OsuNode
     {
         private int? cachedMapId;
-        private List<EventBase> cachedBeatmapEvents = new List<EventBase>();
+        private BeatmapEventsSection cachedBeatmapEvents = new BeatmapEventsSection();
 
         /// <inheritdoc />
         /// <summary>
@@ -35,17 +37,18 @@
             }
 
             int mapTime = (int?)mapTimeNode?.GetValue() ?? -1; 
-            var beatmap = (BMAPI.v1.Beatmap)beatmapNode.GetValue();
+            var beatmap = (Beatmap)beatmapNode.GetValue();
 
             if (beatmap is null)
             {
                 return null;
             }
 
+
             // only update the cache (and reverse the events) if the beatmap changed
-            if (!beatmap.BeatmapID.Equals(this.cachedMapId))
+            if (!beatmap.MetadataSection.BeatmapID.Equals(this.cachedMapId))
             {
-                this.UpdateMapCache(beatmap.BeatmapID, beatmap.Events);
+                this.UpdateMapCache(beatmap.MetadataSection.BeatmapID, beatmap.EventsSection);
             }
 
             bool isMapBreak = IsMapBreak(mapTime, this.cachedBeatmapEvents);
@@ -53,13 +56,11 @@
             return await Task.FromResult(isMapBreak);
         }
 
-        private static bool IsMapBreak(int mapTime, IEnumerable<EventBase> beatmapEvents)
+        private static bool IsMapBreak(int mapTime, BeatmapEventsSection beatmapEvents)
         {
-            foreach (EventBase ev in beatmapEvents)
+            foreach (var bmBreak in beatmapEvents.Breaks)
             {
-                if (ev is BreakEvent breakEvent 
-                    && mapTime >= breakEvent.StartTime 
-                    && mapTime <= breakEvent.EndTime)
+                if (mapTime >= bmBreak.StartTime && mapTime <= bmBreak.EndTime)
                 {
                     return true;
                 }
@@ -68,11 +69,11 @@
             return false;
         }
 
-        private void UpdateMapCache(int? mapId, List<EventBase> beatmapEvents)
+        private void UpdateMapCache(int? mapId, BeatmapEventsSection beatmapEvents)
         {
             this.cachedMapId = mapId;
             this.cachedBeatmapEvents = beatmapEvents;
-            this.cachedBeatmapEvents.Reverse();
+            //this.cachedBeatmapEvents.Reverse();
         }
     }
 }

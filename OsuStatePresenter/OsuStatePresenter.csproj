@@ -40,6 +40,7 @@
     <PostBuildEvent />
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="OsuParsers" Version="1.7.0" />
     <PackageReference Include="System.IO.Compression" Version="4.*" />
     <PackageReference Include="System.Management" Version="4.*" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.*" />
