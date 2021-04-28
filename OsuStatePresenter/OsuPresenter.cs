@@ -81,32 +81,44 @@
 
             // level 0 nodes (master nodes)
             var mapIdNode = new MapIdNode();
-            var statusNode = new StatusNode();
+            var mapTimeNode = new MapTimeNode();
 
             // level 1 nodes
-            var mapTimeNode = new MapTimeNode();
             var beatmapNode = new BeatmapNode();
-            var pausedNode = new PausedNode();
-            var modsNode = new ModsNode();
 
             // level 2 nodes
-            var mapBreakNode = new MapBreakNode();
-            var bpmNode = new BpmNode();
-            var ppNowNode = new PPNode();
             var mapStartNode = new MapStartNode();
+            var mapBreakNode = new MapBreakNode();
+            var mapPausedNode = new PausedNode();
 
-            // attach to level 0 nodes
-            mapIdNode.Precedes(mapTimeNode, modsNode);
-            mapTimeNode.Precedes(bpmNode, pausedNode); // , mapStartNode
-            statusNode.Precedes(modsNode);
+            // level 3
+            var statusNode = new StatusNode();
 
-            // attach to level 1 nodes
+            // level 4
+            var modsNode = new ModsNode();
+
+            // other
+            var ppNowNode = new PPNode();
+            var bpmNode = new BpmNode();
+
+            // level 0
+            mapIdNode.Precedes(beatmapNode);
+            //mapIdNode.Precedes(leaderboardNode);
+            mapTimeNode.Precedes(bpmNode, mapBreakNode, ppNowNode, mapPausedNode);
+
+            // level 1
+            beatmapNode.Precedes(bpmNode, mapStartNode, ppNowNode, mapBreakNode, mapPausedNode);
+
+            // level 2
+            mapPausedNode.Precedes(statusNode);
+            mapStartNode.Precedes(statusNode);
+            mapBreakNode.Precedes(statusNode);
+
+            // level 3
+            statusNode.Precedes(modsNode, ppNowNode);
+
+            // level 4
             modsNode.Precedes(bpmNode);
-
-            // attach to level 2 nodes
-            beatmapNode.Precedes(bpmNode, pausedNode, mapStartNode);
-            mapBreakNode.Follows(beatmapNode, mapTimeNode);
-            ppNowNode.Follows(statusNode, modsNode, beatmapNode, mapTimeNode);
         }
 
         private void SetupStatePresenter(Action<State> stateCreatedHandler)

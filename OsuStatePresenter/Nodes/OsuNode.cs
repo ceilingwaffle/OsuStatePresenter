@@ -34,6 +34,11 @@
         /// <summary>
         /// Gets the osu! memory reader.
         /// </summary>
-        public IOsuMemoryReader MemoryReader { get; }
+        public IOsuMemoryReader MemoryReader { get; set; }
+
+        //protected void ReinitialiseMemoryReader()
+        //{
+        //    this.MemoryReader = new OsuMemoryReader();
+        //}
     }
 }

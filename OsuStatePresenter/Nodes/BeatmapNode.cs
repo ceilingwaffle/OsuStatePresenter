@@ -19,6 +19,8 @@
 
         private string previousBeatmapFilePath = string.Empty;
         private Beatmap cachedBeatmap = null;
+        private bool fileWatcherIsInitialised = false;
+
 
         /// <inheritdoc />
         /// <summary>
@@ -32,39 +34,50 @@
             //this.Preceders.TryGetValue(typeof(MapIdNode), out Node mapIdNode);
             //if (mapIdNode is null) return null;
 
-            string fullMapFilePath = this.BuildFullMapFilePath();
+            string fullMapFilePath = this.GetMapFilePath();
             Beatmap beatmap = this.cachedBeatmap;
+
+            if (!fileWatcherIsInitialised)
+            {
+                InitialiseBeatmapFileWatcher();
+            }
 
             if (!File.Exists(fullMapFilePath))
             {
                 // TODO: OPTIMIZE - Find a better way of caching the value of _osuSongsFolderPath (shouldn't have to re-scan for the osu process path multiple times).
                 // try re-scanning the osu process directory (e.g. if a different instance of osu! was opened from another location).
                 this.osuSongsFolderPath = BuildOsuSongsFolderPath(Helpers.GetProcessDirectory("osu!"));
-                fullMapFilePath = this.BuildFullMapFilePath();
+                fullMapFilePath = this.GetMapFilePath();
                 if (!File.Exists(fullMapFilePath))
                 {
                     // TODO: Log only once per fullMapFilePath
                     Logger.Warn($"Beatmap file not found: {fullMapFilePath}");
-
-                    cachedBeatmap = null;
-
+                    this.cachedBeatmap = null;
                     return null;
                 }
             }
 
-            if (!fullMapFilePath.Equals(this.previousBeatmapFilePath) || beatmap == null)
-            {
-                beatmap = this.BuildBeatmapFromFile(fullMapFilePath);
-                this.UpdateBeatmapCache(beatmap);
+            //if (!fullMapFilePath.Equals(this.previousBeatmapFilePath) || beatmap == null)
+            //{
+            //    beatmap = UpdateBeatmapCacheAndGetBeatmap(fullMapFilePath);
+            //}
 
-                string msg = $"Updated beatmap file cache in {this.GetType()} ({fullMapFilePath})";
-                Logger.Info(msg);
-            }
+            beatmap = this.BuildBeatmapFromFile(fullMapFilePath);
 
-            this.previousBeatmapFilePath = fullMapFilePath;
+            // this.previousBeatmapFilePath = fullMapFilePath;
 
             return await Task.FromResult(beatmap);
         }
+
+        //private Beatmap UpdateBeatmapCacheAndGetBeatmap(string fullMapFilePath)
+        //{
+        //    // this.ReinitialiseMemoryReader();
+        //    Beatmap beatmap = this.BuildBeatmapFromFile(fullMapFilePath);
+        //    this.cachedBeatmap = beatmap;
+        //    string msg = $"Updated beatmap file cache in {this.GetType()} ({fullMapFilePath})";
+        //    Logger.Info(msg);
+        //    return beatmap;
+        //}
 
         /// <summary>
         /// Gets the map time of the occurrence of the first hit object in the given <paramref name="beatmap"/> (float.MaxValue if not found).
@@ -99,22 +112,70 @@
             return BeatmapDecoder.Decode(fullMapFilePath);
         }
 
-        private string BuildFullMapFilePath()
+        private string GetMapFolderPath()
         {
-            string mapFolderName = this.MemoryReader.GetMapFolderName();
-            string mapFileName = this.MemoryReader.GetOsuFileName();
+            return string.Concat(this.osuSongsFolderPath, this.GetMapFolderName(), @"\");
+        }
+
+        private string GetMapFilePath()
+        {
+            string mapFolderName = this.GetMapFolderName();
+            string mapFileName = this.GetMapFileName();
             string fullMapFilePath = this.BuildMapPathString(mapFolderName, mapFileName);
             return fullMapFilePath;
         }
 
-        private void UpdateBeatmapCache(Beatmap beatmap)
+        private string GetMapFolderName()
         {
-            this.cachedBeatmap = beatmap;
+            return this.MemoryReader.GetMapFolderName();
+        }
+
+        private string GetMapFileName()
+        {
+            return this.MemoryReader.GetOsuFileName();
         }
 
         private string BuildMapPathString(string mapFolderName, string mapFileName)
         {
             return string.Concat(this.osuSongsFolderPath, mapFolderName, @"\", mapFileName);
+        }
+
+        private void InitialiseBeatmapFileWatcher()
+        {
+            var path = this.GetMapFolderPath();
+            var watcher = new FileSystemWatcher();
+            watcher.Path = path;
+            watcher.NotifyFilter = NotifyFilters.LastWrite;
+            watcher.Filter = "*.osu";
+
+            watcher.Changed += OnOsuFileChanged;
+            // watcher.Created += OnOsuFileChanged;
+            // watcher.Deleted += OnOsuFileChanged;
+            // watcher.Renamed += new FileSystemEventHandler(OnChanged);
+            watcher.Error += OnOsuFileWatcherError;
+
+            //watcher.IncludeSubdirectories = false;
+            watcher.EnableRaisingEvents = true;
+
+            fileWatcherIsInitialised = true;
+        }
+
+        private void OnOsuFileChanged(object sender, FileSystemEventArgs e)
+        {
+            if (e.ChangeType != WatcherChangeTypes.Changed) return;
+
+            var filePath = e.FullPath;
+            var fileName = e.Name;
+
+            Logger.Debug($"osu file Changed: '{e.FullPath}'");
+            Logger.Debug($"Refreshing beatmap file cache...");
+
+            this.cachedBeatmap = null;
+        }
+
+        private void OnOsuFileWatcherError(object sender, ErrorEventArgs e)
+        {
+            Logger.Error(e.GetException());
         }
     }
 }

@@ -44,14 +44,17 @@
                 return null;
             }
 
+            //TODO - re-enable the cache (have a FileWatcher class in which multiple nodes will observe the OnChanged event)
 
             // only update the cache (and reverse the events) if the beatmap changed
-            if (!beatmap.MetadataSection.BeatmapID.Equals(this.cachedMapId))
-            {
-                this.UpdateMapCache(beatmap.MetadataSection.BeatmapID, beatmap.EventsSection);
-            }
+            //if (!beatmap.MetadataSection.BeatmapID.Equals(this.cachedMapId))
+            //{
+            //    this.UpdateMapCache(beatmap.MetadataSection.BeatmapID, beatmap.EventsSection);
+            //}
 
-            bool isMapBreak = IsMapBreak(mapTime, this.cachedBeatmapEvents);
+            //bool isMapBreak = IsMapBreak(mapTime, this.cachedBeatmapEvents);
+
+            bool isMapBreak = IsMapBreak(mapTime, beatmap.EventsSection);
 
             return await Task.FromResult(isMapBreak);
         }
