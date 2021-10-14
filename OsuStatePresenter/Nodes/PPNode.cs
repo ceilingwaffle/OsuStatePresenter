@@ -34,8 +34,8 @@
             // _memoryReader.GetPlayData(Play);
             // double ppNow = PPIfBeatmapWouldEndNow();
             this.Preceders.TryGetValue(typeof(StatusNode), out Node statusNode);
-            var status = (string)statusNode?.GetValue();
-            if (status != null && !status.Equals("Playing"))
+            var status = (OsuStatus)statusNode?.GetValue();
+            if (status != OsuStatus.Playing)
             {
                 return null;
             }

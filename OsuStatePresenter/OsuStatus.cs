@@ -1,7 +1,5 @@
 ﻿namespace OsuStatePresenter
 {
-    //using OsuMemoryDataProvider;
-
     /// <summary>
     /// Osu Memory Status (copied from OsuMemoryDataProvider.OsuMemoryStatus)
     /// </summary>
@@ -35,5 +33,63 @@
         SongPaused = 101,
         InMapBreak = 102,
         MapStart = 103,
+    }
+
+    public static class OsuStatusDescriptions
+    {
+        public static string ToFriendlyString(this OsuStatus status)
+        {
+            switch (status)
+            {
+                case OsuStatus.NotRunning:
+                    return "Not Running";
+                case OsuStatus.MainMenu:
+                    return "Main Menu";
+                case OsuStatus.EditingMap:
+                    return "Editing Map";
+                case OsuStatus.Playing:
+                    return "Playing";
+                case OsuStatus.GameShutdownAnimation:
+                    return "Game Shutdown Animation";
+                case OsuStatus.SongSelectEdit:
+                    return "Song Select Edit";
+                case OsuStatus.SongSelect:
+                    return "Song Select";
+                case OsuStatus.WIP_NoIdeaWhatThisIs:
+                    return "WIP_NoIdeaWhatThisIs";
+                case OsuStatus.ResultsScreen:
+                    return "Results Screen";
+                case OsuStatus.GameStartupAnimation:
+                    return "Game Startup Animation";
+                case OsuStatus.MultiplayerRooms:
+                    return "Multiplayer Rooms";
+                case OsuStatus.MultiplayerRoom:
+                    return "Multiplayer Room";
+                case OsuStatus.MultiplayerSongSelect:
+                    return "Multiplayer Song Select";
+                case OsuStatus.MultiplayerResultsscreen:
+                    return "Multiplayer Results Screen";
+                case OsuStatus.OsuDirect:
+                    return "OsuDirect";
+                case OsuStatus.RankingTagCoop:
+                    return "Ranking Tag Coop";
+                case OsuStatus.RankingTeam:
+                    return "Ranking Team";
+                case OsuStatus.ProcessingBeatmaps:
+                    return "Processing Beatmaps";
+                case OsuStatus.Tourney:
+                    return "Tourney";
+                case OsuStatus.Unknown:
+                    return "Unknown";
+                case OsuStatus.SongPaused:
+                    return "Song Paused";
+                case OsuStatus.InMapBreak:
+                    return "In Map Break";
+                case OsuStatus.MapStart:
+                    return "Map Start";
+                default:
+                    return "Unknown";
+            }
+        }
     }
 }

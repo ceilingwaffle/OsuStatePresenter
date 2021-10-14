@@ -28,13 +28,14 @@
                 return await Task.FromResult(this.ReadMods());
             }
 
-            object statusNow = statusNode.GetValue();
-            object statusBefore = statusNode.GetPreviousValue();
+            OsuStatus statusNow = (OsuStatus)statusNode.GetValue();
+            var x = statusNode.GetPreviousValue();
+            OsuStatus statusBefore = x == null ? OsuStatus.Unknown : (OsuStatus)x;
 
             // _logger.Info($"{statusBefore} -> {statusNow}");
 
             // only read mods if status is "playing" and the previous status was not "playing".
-            if (statusNow.Equals("Playing") && !statusNow.Equals(statusBefore))
+            if (statusNow == OsuStatus.Playing && !statusNow.Equals(statusBefore))
             {
                 return await Task.FromResult(this.ReadMods());
             }

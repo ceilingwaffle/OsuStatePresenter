@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
 
     using DVPF.Core;
+    using OsuMemoryDataProvider;
 
     /// <inheritdoc />
     /// <summary>
@@ -27,9 +28,9 @@
 
             OsuStatus status = this.GetOsuStatus((PausedNode)mapPausedNode, (MapBreakNode)mapBreakNode, (MapStartNode)mapStartNode);
 
-            string statusString = System.Enum.GetName(typeof(OsuStatus), status);
+            //string statusString = System.Enum.GetName(typeof(OsuStatus), status);
 
-            return await Task.FromResult(statusString);
+            return await Task.FromResult(status);
         }
 
         /// <summary>
@@ -60,25 +61,20 @@
                 return OsuStatus.Unknown;
             }
 
-            if (isPaused == false && omStatus.Equals("Playing") && isMapBreak == true)
-            {
-                return OsuStatus.InMapBreak;
-            }
-
-            if (omStatus.Equals("Playing") && isPaused == true)
+            if (omStatus == OsuMemoryStatus.Playing && isPaused == true)
             {
                 return OsuStatus.SongPaused;
             }
 
-            if (omStatus.Equals("Playing") && isMapStart == true)
+            if (omStatus == OsuMemoryStatus.Playing && isMapStart == true)
             {
                 return OsuStatus.MapStart;
             }
 
-            //if (status.Length < 1)
-            //{
-            //    return OsuStatus.Unknown;
-            //}
+            if (isPaused == false && omStatus == OsuMemoryStatus.Playing && isMapBreak == true)
+            {
+                return OsuStatus.InMapBreak;
+            }
 
             return (OsuStatus)omStatus;
 
