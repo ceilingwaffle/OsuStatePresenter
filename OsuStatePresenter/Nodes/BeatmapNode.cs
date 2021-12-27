@@ -53,7 +53,8 @@
                     // TODO: Log only once per fullMapFilePath
                     Logger.Warn($"Beatmap file not found: {fullMapFilePath}");
                     this.cachedBeatmap = null;
-                    return null;
+                    // return null;
+                    return new Beatmap();
                 }
             }
 

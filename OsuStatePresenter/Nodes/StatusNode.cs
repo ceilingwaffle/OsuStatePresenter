@@ -52,9 +52,22 @@
 
             var omStatus = this.MemoryReader.GetCurrentStatus(out int statusNumber);
 
-            var isPaused = (bool)pausedNode.GetValue();
-            var isMapBreak = (bool)mapBreakNode.GetValue();
-            var isMapStart = (bool)mapStartNode.GetValue();
+            var isPaused = false;
+            var isMapBreak = false;
+            var isMapStart = false;
+
+            try
+            {
+                // workaround for when a beatmap file does not exist
+                isPaused = (bool)pausedNode.GetValue();
+                isMapBreak = (bool)mapBreakNode.GetValue();
+                isMapStart = (bool)mapStartNode.GetValue();
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+
 
             if (isPaused == false && omStatus.Equals(OsuStatus.Unknown))
             {
