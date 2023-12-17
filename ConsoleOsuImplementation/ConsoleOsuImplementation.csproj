@@ -36,8 +36,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DependentValuePresentationFramework\DVPF.Core\DVPF.Core.csproj" />
     <ProjectReference Include="..\OsuStatePresenter\OsuStatePresenter.csproj" />
-    <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\OsuMemoryDataProvider\OsuMemoryDataProvider.csproj" />
-    <ProjectReference Include="..\submodules\ProcessMemoryDataFinder\ProcessMemoryDataFinder\ProcessMemoryDataFinder.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.6.1" />

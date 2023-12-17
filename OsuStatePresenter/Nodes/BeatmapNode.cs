@@ -96,7 +96,7 @@
                 return float.MaxValue;
             }
 
-            var t = beatmap.HitObjects?[index: 0]?.StartTime;
+            var t = beatmap.HitObjects?[0]?.StartTime;
 
             return t ?? float.MaxValue;
         }
